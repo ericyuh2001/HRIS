@@ -81,7 +81,7 @@ namespace HRIS_WAMS_WebCoreAPI
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "cccc V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "HRIS-WAMS Swagger 文件說明製作 V1");
             });
 
             app.UseRouting();
