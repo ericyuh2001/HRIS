@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "V3kEdsfzTUXhZlTT/NclfIMps7tbDbjKy34H2e2C41fGBEbnbnUGmsR1az0syGvu8VqAbTKe5hVmh1H1n7J2AQ==",
+  "dgSpecHash": "ztRv1dkDTsXY55ELvrPYlj2tcFtMJB7xK9uDJra5ErQQKWNgfE12Jnt4DhifaryLjEw7VyjXKZDK6VQ586Oi6w==",
   "success": true,
   "projectFilePath": "C:\\[Project]\\工時系統\\HRIS-WAMS-WebCoreAPI\\HRIS-WAMS-WebCoreAPI\\HRIS-WAMS-WebCoreAPI.csproj",
   "expectedPackageFiles": [
@@ -83,10 +83,10 @@
     "C:\\Users\\Eric\\.nuget\\packages\\sqlitepclraw.core\\2.0.2\\sqlitepclraw.core.2.0.2.nupkg.sha512",
     "C:\\Users\\Eric\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.2\\sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",
     "C:\\Users\\Eric\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.2\\sqlitepclraw.provider.dynamic_cdecl.2.0.2.nupkg.sha512",
-    "C:\\Users\\Eric\\.nuget\\packages\\swashbuckle.aspnetcore\\5.1.0\\swashbuckle.aspnetcore.5.1.0.nupkg.sha512",
-    "C:\\Users\\Eric\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.1.0\\swashbuckle.aspnetcore.swagger.5.1.0.nupkg.sha512",
-    "C:\\Users\\Eric\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.1.0\\swashbuckle.aspnetcore.swaggergen.5.1.0.nupkg.sha512",
-    "C:\\Users\\Eric\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.1.0\\swashbuckle.aspnetcore.swaggerui.5.1.0.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\swashbuckle.aspnetcore\\5.3.1\\swashbuckle.aspnetcore.5.3.1.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.3.1\\swashbuckle.aspnetcore.swagger.5.3.1.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.3.1\\swashbuckle.aspnetcore.swaggergen.5.3.1.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.3.1\\swashbuckle.aspnetcore.swaggerui.5.3.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

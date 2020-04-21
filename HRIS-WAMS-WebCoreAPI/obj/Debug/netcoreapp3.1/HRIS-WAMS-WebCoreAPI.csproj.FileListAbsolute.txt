@@ -157,6 +157,7 @@ C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\ne
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.runtimeconfig.dev.json
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.pdb
+C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.xml
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
@@ -285,7 +286,6 @@ C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\ne
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.csprojAssemblyReference.cache
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.csproj.CoreCompileInputs.cache
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.MvcApplicationPartsAssemblyInfo.cache
@@ -296,7 +296,6 @@ C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\ne
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\staticwebassets\HRIS-WAMS-WebCoreAPI.StaticWebAssets.Manifest.cache
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\staticwebassets\HRIS-WAMS-WebCoreAPI.StaticWebAssets.xml
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.dll
+C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.xml
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.pdb
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.genruntimeconfig.cache
-C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.xml
-C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.xml

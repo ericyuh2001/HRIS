@@ -91,7 +91,13 @@ namespace HRIS_WAMS_WebCoreAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                //endpoints.MapControllerRoute(name: "duty",
+                //   pattern: "duty/{*article}",
+                //   defaults: new { controller = "Whs", action = "Article" });
             });
+
+            
         }
     }
 }

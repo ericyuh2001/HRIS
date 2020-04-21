@@ -61,19 +61,19 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.1.0, )"
+              "version": "[5.3.1, )"
             },
             "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
-              "version": "[5.1.0, )"
+              "version": "[5.3.1, )"
             },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",
-              "version": "[5.1.0, )"
+              "version": "[5.3.1, )"
             },
             "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
-              "version": "[5.1.0, )"
+              "version": "[5.3.1, )"
             }
           },
           "imports": [
@@ -94,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
