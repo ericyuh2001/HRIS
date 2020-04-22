@@ -29,12 +29,14 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 刪除填報資料
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     DELETE /api/v1/whs/duty
         ///     {
         ///         "RowUnid":"11111CF1-4449-4772-8601-58A478DF110B",
         ///         "DeletedBy":"001234"
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <returns></returns>
         /// <response code="201">代碼201說明描述</response>
@@ -81,11 +83,13 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 取得員工單日加班、請假等資料
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/duty/EmpID/002688/GetAlterbyEmpID
         ///     {
         ///        "message":"您尚有 2020/04/07 未填寫完成!"
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >員工編號</param>
         /// <returns>傳回員工上班日休假資料表</returns>
@@ -114,6 +118,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 取得員工單日加班、請假等資料
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/duty/EmpID/002688/WorkDate/20160223/GetEmpLeavebyWorkDate
         ///     {
@@ -124,6 +129,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///        "type":"Leave",
         ///        "IsProject":"1"
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >員工編號</param>
         /// <param name="WorkDateNo">上班日（格式yyyymmmdd）</param>
@@ -166,6 +172,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 抓取員工首頁資訊
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/duty/EmpID/692197/GetHomeInfoByEmp
         ///     {
@@ -173,7 +180,11 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///        "EmpName":"李蕙芬",
         ///        "Sex":"2",
         ///        "message":"您目前尚無待辦事項須處理",
+        ///        "WriteRedPoint":"1",
+        ///        "SignRedPoint":"1",
+        ///        "RoleID":"A",
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >員工代號</param>
         /// <returns>傳回員工首頁資訊</returns>
@@ -203,6 +214,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 員工萬年曆狀態列表
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/duty/EmpID/373409/StartDate/20200301/EndDate/20200331/GetWorkingDate
         ///     {
@@ -210,6 +222,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///        "workingDate":"2020-03-01T00:00:00",
         ///        "isFinish":"9"
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >員工編號</param>
         /// <param name="StartDateNo">傳入日期區間：起始日期</param>
@@ -250,10 +263,11 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
 
-/// <summary>
+        /// <summary>
         /// 員工單日可填報項目
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/duty/RowUnid/00A05C2D-56D4-4C65-906B-B0A0B2B3A4BF/TypeCode/C01/JobCode/Bus_1/GetWorkingHoursDetail
         ///     {
@@ -261,6 +275,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///        "workingDate":"2020-03-01T00:00:00",
         ///        "isFinish":"9"
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <param name="RowUnid" >工時填報資料代碼</param>
         /// <param name="TypeCode">Type代碼</param>
@@ -295,6 +310,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 員工單日工時紀錄列表
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/duty/RowUnid/00A05C2D-56D4-4C65-906B-B0A0B2B3A4BF/GetWorkingDate
         ///     {
@@ -311,6 +327,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///        "workingHours":3.5,
         ///        "note":"TEST"}]
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <param name="RowUnid" >工時填報資料代碼</param>
         /// <returns>傳回工時填報資料</returns>
@@ -339,7 +356,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 建立工時填報明細資料
         /// </summary>
         /// <remarks>
-        /// 回傳範例
+        /// <pre><h2>
+        /// 傳入範例
         ///     POST /api/v1/whs/duty
         ///     {
         ///         "RowUnid":"00000CF1-4449-4772-8601-58A478DF110B",
@@ -349,6 +367,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "Note":"Test_001",
         ///         "CreatedBy":"002688"
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <returns>傳回建檔結果</returns>
         /// <response code="201">代碼201說明描述</response>
@@ -437,6 +456,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 修改填報資料
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     PUT /api/v1/whs/duty
         ///     {
@@ -447,6 +467,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "Note":"Test_001",
         ///         "CreatedBy":"002688"
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <returns></returns>
         /// <response code="201">代碼201說明描述</response>

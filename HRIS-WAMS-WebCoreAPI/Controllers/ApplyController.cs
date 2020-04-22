@@ -24,6 +24,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 申請人將填報資料送批核
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     POST /api/v1/whs/apply
         ///     {
@@ -31,6 +32,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "WorkingDateStart":"2020-03-24",
         ///         "WorkingDateEnd":"2020-03-27"
         ///     }
+        /// </h2></pre>
         /// </remarks>
         /// <returns>傳回</returns>
         /// <response code="201">代碼201說明描述</response>

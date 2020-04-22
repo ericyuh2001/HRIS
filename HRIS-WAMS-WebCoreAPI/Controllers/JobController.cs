@@ -24,6 +24,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <returns>傳回取得單日JobCode清單</returns>
         /// </summary>
         /// <remarks>
+        /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/job/846501/20200105
         ///     {
@@ -32,6 +33,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///        "jobCode":"Bus_56  ",
         ///        "jobName":"企業整合專案"
         ///     }
+        ///     </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >員工編號</param>
         /// <param name="WorkingDateNo">上班日（格式yyyymmmdd）</param>

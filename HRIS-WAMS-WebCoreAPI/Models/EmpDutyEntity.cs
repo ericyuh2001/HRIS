@@ -44,6 +44,16 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
         [Display(Name = "提醒訊息")]
         public string message { get; set; }
+
+
+        [Display(Name = "申請待辦")]
+        public string WriteRedPoint { get; set; }
+
+        [Display(Name = "待批待辦")]
+        public string SignRedPoint { get; set; }
+
+        [Display(Name = "角色代碼")]
+        public string RoleID { get; set; }
     }
 
 

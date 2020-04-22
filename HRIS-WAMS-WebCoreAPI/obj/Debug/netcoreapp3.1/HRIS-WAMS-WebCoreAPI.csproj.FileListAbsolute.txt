@@ -299,3 +299,4 @@ C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\ne
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.xml
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.pdb
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.genruntimeconfig.cache
+C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.csprojAssemblyReference.cache
