@@ -26,16 +26,18 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     GET /api/v1/whs/sign/EmpID/002688/GetWaitApprove_WHS
         ///     {
         ///        {"EmpName":"賴x芬",
-        ///        "message":"3月 W4"
+        ///        "FlowID":"1020200413001997001                 ",
+        ///        "message":"2020/3 W4 工時申報單"
         ///        },
         ///        {"EmpName":"賴x芬",
-        ///        "message":"4月 W3"
+        ///        "FlowID":"1020200421001997001                 ",
+        ///        "message":"2020/4 W3 工時申報單"
         ///        }
         ///     }
         /// </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >員工編號</param>
-        /// <returns>傳回簽核待批訊息</returns>
+        /// <returns>傳回待批表單列表資料</returns>
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>          
         [HttpGet("EmpID/{EmpID}/GetWaitApprove_WHS")]
@@ -73,7 +75,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///             "IsReject":""
         ///             }]
         ///     }
-        ///     
+        ///     </h2><h2>
         /// 傳入範例二（退件）
         ///     POST /api/v1/whs/sign
         ///     {
@@ -87,7 +89,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///             "IsReject":"1"
         ///             },
         ///             {
-        ///             "RowUnid":"0003BF09-ECC6-4F18-BF97-5CF76E3468E2-3FBF-4BDC-A535-1EBFD2BA0C16",
+        ///             "RowUnid":"0003BF09-ECC6-4F18-BF97-5CF76E3468E2",
         ///             "IsReject":"1"
         ///             }
         ///             ]

@@ -23,7 +23,7 @@
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>          
         </member>
-        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.DeleteWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.EmpWorkingHoursDetailDelEntity)">
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.DeleteWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.DeleteWorkingHoursDetailEntity)">
             <summary>
             刪除填報資料
             </summary>
@@ -43,43 +43,62 @@
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetAlterbyEmpID(System.String)">
             <summary>
-            取得員工單日加班、請假等資料
+            首頁待填報列表
             </summary>
             <remarks>
             <pre><h2>
             回傳範例
                 GET /api/v1/whs/duty/EmpID/002688/GetAlterbyEmpID
                 {
-                   "message":"您尚有 2020/04/07 未填寫完成!"
+                   {"EmpID":"848259",
+                   "WorkingDate":"2020/04/07",
+                   "status:","未送出"
+                   },
+                   {"EmpID":"848259",
+                   "WorkingDate":"2020/04/08",
+                   "status:","未送出"
+                   },
+                   {"EmpID":"848259",
+                   "WorkingDate":"2020/04/09",
+                   "status:","未送出"
+                   }
                 }
                 </h2></pre>
             </remarks>
-            <param name="EmpID" >員工編號</param>
-            <returns>傳回員工上班日休假資料表</returns>
+            <param name="EmpID" >員工代號</param>
+            <returns>傳回首頁待填報資料</returns>
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>          
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetEmpLeaveWorkDates(System.String,System.String)">
             <summary>
-            取得員工單日加班、請假等資料
+            抓取員工單日假單、加班單及判斷員工單日工時
             </summary>
             <remarks>
             <pre><h2>
             回傳範例
                 GET /api/v1/whs/duty/EmpID/002688/WorkDate/20160223/GetEmpLeavebyWorkDate
                 {
-                   "EmpID": 123456,
-                   "WorkDate": "2010/01/02",
-                   "ApplyHours": 8,
-                   "Reason":"休假",
-                   "type":"Leave",
-                   "IsProject":"1"
+                   {"EmpID": 002688,
+                   "WorkDate": "2016-02-23 00:00:00.000",
+                   "ApplyHours": 2,
+                   "Reason":"新HRIS PRDS功能測試調整",
+                   "type":"非專標案加班",
+                   "IsProject":"N"
+                   },
+                   {"EmpID": 002688,
+                   "WorkDate": "2016-02-23 00:00:00.000",
+                   "ApplyHours": 1,
+                   "Reason":"新HRIS PRDS功能測試調整",
+                   "type":"非專標案加班",
+                   "IsProject":"N"
+                   }
                 }
                 </h2></pre>
             </remarks>
-            <param name="EmpID" >員工編號</param>
+            <param name="EmpID" >員工代號</param>
             <param name="WorkDateNo">上班日（格式yyyymmmdd）</param>
-            <returns>傳回員工上班日休假資料表</returns>
+            <returns>傳回員工單日工時</returns>
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>          
         </member>
@@ -122,7 +141,7 @@
                 }
                 </h2></pre>
             </remarks>
-            <param name="EmpID" >員工編號</param>
+            <param name="EmpID" >員工代號</param>
             <param name="StartDateNo">傳入日期區間：起始日期</param>
             <param name="EndDateNo">傳入日期區間：結束日期</param>
             <returns>傳回個人月曆資料清單資料表</returns>
@@ -161,17 +180,17 @@
                 GET /api/v1/whs/duty/RowUnid/00A05C2D-56D4-4C65-906B-B0A0B2B3A4BF/GetWorkingDate
                 {
                    [{"rowUnid":"00A05C2D-56D4-4C65-906B-B0A0B2B3A4BF",
-                   "empID":"309426",
-                   "workingDate":"2020-04-07T00:00:00",
-                   "totalWorkingHours":0.0,
-                   "filledHours":8.0,
-                   "isFinish":"0",
-                   "typeCode":"C01",
-                   "typeName":"CT/ICT",
-                   "jobCode":"Bus_1",
-                   "jobName":"市話語音",
-                   "workingHours":3.5,
-                   "note":"TEST"}]
+                   "EmpID":"309426",
+                   "WorkingDate":"2020-04-07T00:00:00",
+                   "totalWorkingHours":4.0,
+                   "FilledHours":8.0,
+                   "IsFinish":"未送出",
+                   "TypeCode":"C01",
+                   "TypeName":"CT/ICT",
+                   "JobCode":"Bus_1",
+                   "JobName":"市話語音",
+                   "WorkingHours":3.5,
+                   "Note":"TEST"}]
                 }
                 </h2></pre>
             </remarks>
@@ -180,9 +199,9 @@
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>          
         </member>
-        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.InsertWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.EmpWorkingHoursDetailEntity)">
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.InsertWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.InsertWorkingHoursDetailEntity)">
             <summary>
-            建立工時填報明細資料
+            輸入工時明細
             </summary>
             <remarks>
             <pre><h2>
@@ -202,7 +221,7 @@
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>          
         </member>
-        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.UpdateWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.EmpWorkingHoursDetailUpdEntity)">
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.UpdateWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.UpdateWorkingHoursDetailEntity)">
             <summary>
             修改填報資料
             </summary>
@@ -224,7 +243,7 @@
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>     
         </member>
-        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.JobController.GetWorkingDate(System.String,System.String)">
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.JobController.GetWorkingDateJobCodebyEmpID(System.String,System.String)">
             <summary>
             <returns>傳回取得單日JobCode清單</returns>
             </summary>
@@ -240,7 +259,7 @@
                 }
                 </h2></pre>
             </remarks>
-            <param name="EmpID" >員工編號</param>
+            <param name="EmpID" >員工代號</param>
             <param name="WorkingDateNo">上班日（格式yyyymmmdd）</param>
             <returns>傳回單日JobCode清單</returns>
             <response code="201">代碼201說明描述</response>
@@ -283,16 +302,18 @@
                 GET /api/v1/whs/sign/EmpID/002688/GetWaitApprove_WHS
                 {
                    {"EmpName":"賴x芬",
-                   "message":"3月 W4"
+                   "FlowID":"1020200413001997001                 ",
+                   "message":"2020/3 W4 工時申報單"
                    },
                    {"EmpName":"賴x芬",
-                   "message":"4月 W3"
+                   "FlowID":"1020200421001997001                 ",
+                   "message":"2020/4 W3 工時申報單"
                    }
                 }
             </h2></pre>
             </remarks>
             <param name="EmpID" >員工編號</param>
-            <returns>傳回簽核待批訊息</returns>
+            <returns>傳回待批表單列表資料</returns>
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>          
         </member>
@@ -315,7 +336,7 @@
                         "IsReject":""
                         }]
                 }
-                
+                </h2><h2>
             傳入範例二（退件）
                 POST /api/v1/whs/sign
                 {
@@ -329,7 +350,7 @@
                         "IsReject":"1"
                         },
                         {
-                        "RowUnid":"0003BF09-ECC6-4F18-BF97-5CF76E3468E2-3FBF-4BDC-A535-1EBFD2BA0C16",
+                        "RowUnid":"0003BF09-ECC6-4F18-BF97-5CF76E3468E2",
                         "IsReject":"1"
                         }
                         ]

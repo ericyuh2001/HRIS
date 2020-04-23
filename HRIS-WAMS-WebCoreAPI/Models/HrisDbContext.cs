@@ -11,14 +11,21 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 {
     public class HrisDbContext : DbContext
     {
-        public virtual DbSet<EmpLeaveWorkDateEntity> EmpLeaveWorkDateEntities { get; set; }
-        public virtual DbSet<EmployeeMessageEntity> EmployeeMessageEntitys { get; set; }
+        // 首頁待填報列表
+        public virtual DbSet<AlterbyEmpIDEntity> AlterbyEmpIDEntitys { get; set; }
+
+        // 抓取員工單日假單、加班單&判斷員工單日工時
+        public virtual DbSet<EmpLeavebyWorkDateEntity> EmpLeavebyWorkDateEntitys { get; set; }
+
+        
 
         // 抓取員工首頁資訊
         public virtual DbSet<HomeInfoByEmpEntity> HomeInfoByEmpEntitys { get; set; }
 
-        public virtual DbSet<EmpWorkingDateEntity> EmpWorkingDateEntitys { get; set; }
-        public virtual DbSet<JobCodeEntity> JobCodeEntitys { get; set; }
+        
+       
+        // 員工萬年曆狀態列表
+        public virtual DbSet<WorkingDateEntity> WorkingDateEntitys { get; set; }
 
         // 員工單日工時紀錄列表
         public virtual DbSet<WorkingDateAllDetailEntity> WorkingDateAllDetailEntitys { get; set; }
@@ -26,12 +33,23 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         // 員工單日可填報項目
         public virtual DbSet<WorkingHoursDetailEntity> WorkingHoursDetailEntitys { get; set; }
 
-        public virtual DbSet<EmpWorkingHoursDetailEntity> EmpWorkingHoursDetailEntitys { get; set; }
+        public virtual DbSet<EmpLeavebyWorkDateEntity> EmpWorkingHoursDetailEntitys { get; set; }
 
         // 抓取待批表單列表
         public virtual DbSet<WaitApproveEntity> WaitApproveEntitys { get; set; }
 
-       
+
+
+        #region "Job"
+        // =============================================================================
+        // 員工單日可填報項目
+        public virtual DbSet<WorkingDateJobCodebyEmpIDEndity> WorkingDateJobCodebyEmpIDEnditys { get; set; }
+
+        #endregion
+
+
+
+
 
         public HrisDbContext()
         {
@@ -57,7 +75,14 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EmpLeaveWorkDateEntity>(entity =>
+            // 首頁待填報列表
+            modelBuilder.Entity<AlterbyEmpIDEntity>(entity =>
+            {
+                entity.HasKey(e => e.EmpID);
+            });
+
+            // 抓取員工單日假單、加班單&判斷員工單日工時
+            modelBuilder.Entity<EmpLeavebyWorkDateEntity>(entity =>
             {
                 entity.HasKey(e => e.EmpID);
             });
@@ -68,25 +93,20 @@ namespace HRIS_WAMS_WebCoreAPI.Models
                 entity.HasKey(e => e.EmpID);
             });
 
-            modelBuilder.Entity<EmployeeMessageEntity>(entity =>
-            {
-                entity.HasKey(e => e.Message);
-            });
 
-            modelBuilder.Entity<EmpWorkingDateEntity>(entity =>
+           
+            
+
+
+            //modelBuilder.Entity<EmpWorkingHoursDetailEntity>(entity =>
+            //{
+            //    entity.HasKey(e => e.RowUnid);
+            //});
+
+            // 員工萬年曆狀態列表
+            modelBuilder.Entity<WorkingDateEntity>(entity =>
             {
                 entity.HasKey(e => e.EmpID);
-            });
-
-            modelBuilder.Entity<JobCodeEntity>(entity =>
-            {
-                entity.HasKey(e => e.JobCode);
-            });
-
-
-            modelBuilder.Entity<EmpWorkingHoursDetailEntity>(entity =>
-            {
-                entity.HasKey(e => e.RowUnid);
             });
 
 
@@ -107,8 +127,17 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             {
                 entity.HasKey(e => e.EmpName);
             });
-            
-            
+
+
+
+            // =============================================================
+            // 員工單日可填報項目
+            modelBuilder.Entity<WorkingDateJobCodebyEmpIDEndity>(entity =>
+            {
+                entity.HasKey(e => e.JobCode);
+            });
+
+
             base.OnModelCreating(modelBuilder);
         }
 

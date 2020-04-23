@@ -18,7 +18,11 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
         [Required]
-        [Display(Name = "簽核待批訊息")]
+        [Display(Name = "待批表單代碼")]
+        public string FlowID { get; set; }
+
+        [Required]
+        [Display(Name = "待批表單描述")]
         public string message { get; set; }
 
     }

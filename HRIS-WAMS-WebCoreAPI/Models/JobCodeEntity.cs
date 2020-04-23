@@ -10,23 +10,23 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 {
 
 
-    public class JobCodeEntity
+    public class WorkingDateJobCodebyEmpIDEndity
     {
 
         [Required]
-        [Display(Name = "類型代碼")]
+        [Display(Name = "Type代碼")]
         public string TypeCode { get; set; }
 
         [Required]
-        [Display(Name = "類型名稱")]
+        [Display(Name = "Type名稱")]
         public string TypeName { get; set; }
 
         [Required]
-        [Display(Name = "工作代碼")]
+        [Display(Name = "Job代碼")]
         public string JobCode { get; set; }
 
         [Required]
-        [Display(Name = "工作名稱")]
+        [Display(Name = "Job名稱")]
         public string JobName { get; set; }
         
     }

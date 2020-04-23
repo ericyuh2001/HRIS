@@ -42,7 +42,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>     
         [HttpDelete]
-        public async Task<ActionResult<EmpWorkingHoursDetailDelEntity>> DeleteWorkingHoursDetail([FromBody]EmpWorkingHoursDetailDelEntity empWorkingHoursDetailEntity)
+        public async Task<ActionResult<DeleteWorkingHoursDetailEntity>> DeleteWorkingHoursDetail([FromBody]DeleteWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
             
 
@@ -80,32 +80,43 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
         /// <summary>
-        /// 取得員工單日加班、請假等資料
+        /// 首頁待填報列表
         /// </summary>
         /// <remarks>
         /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/duty/EmpID/002688/GetAlterbyEmpID
         ///     {
-        ///        "message":"您尚有 2020/04/07 未填寫完成!"
+        ///        {"EmpID":"848259",
+        ///        "WorkingDate":"2020/04/07",
+        ///        "status:","未送出"
+        ///        },
+        ///        {"EmpID":"848259",
+        ///        "WorkingDate":"2020/04/08",
+        ///        "status:","未送出"
+        ///        },
+        ///        {"EmpID":"848259",
+        ///        "WorkingDate":"2020/04/09",
+        ///        "status:","未送出"
+        ///        }
         ///     }
         ///     </h2></pre>
         /// </remarks>
-        /// <param name="EmpID" >員工編號</param>
-        /// <returns>傳回員工上班日休假資料表</returns>
+        /// <param name="EmpID" >員工代號</param>
+        /// <returns>傳回首頁待填報資料</returns>
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>          
         [HttpGet("EmpID/{EmpID}/GetAlterbyEmpID")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<EmployeeMessageEntity> GetAlterbyEmpID(string EmpID)
+        public IEnumerable<AlterbyEmpIDEntity> GetAlterbyEmpID(string EmpID)
         {
 
             string sSQL = "EXEC [whs].[usp_GetAlterbyEmpID] {0}";
             var MyHrisDB = new HrisDbContext();
-            var EmpMessage = MyHrisDB.EmployeeMessageEntitys.FromSqlRaw(sSQL, EmpID);
+            var AlterbyEmpIDInfo = MyHrisDB.AlterbyEmpIDEntitys.FromSqlRaw(sSQL, EmpID);
 
-            return EmpMessage;
+            return AlterbyEmpIDInfo;
         }
 
 
@@ -115,40 +126,48 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
         /// <summary>
-        /// 取得員工單日加班、請假等資料
+        /// 抓取員工單日假單、加班單及判斷員工單日工時
         /// </summary>
         /// <remarks>
         /// <pre><h2>
         /// 回傳範例
         ///     GET /api/v1/whs/duty/EmpID/002688/WorkDate/20160223/GetEmpLeavebyWorkDate
         ///     {
-        ///        "EmpID": 123456,
-        ///        "WorkDate": "2010/01/02",
-        ///        "ApplyHours": 8,
-        ///        "Reason":"休假",
-        ///        "type":"Leave",
-        ///        "IsProject":"1"
+        ///        {"EmpID": 002688,
+        ///        "WorkDate": "2016-02-23 00:00:00.000",
+        ///        "ApplyHours": 2,
+        ///        "Reason":"新HRIS PRDS功能測試調整",
+        ///        "type":"非專標案加班",
+        ///        "IsProject":"N"
+        ///        },
+        ///        {"EmpID": 002688,
+        ///        "WorkDate": "2016-02-23 00:00:00.000",
+        ///        "ApplyHours": 1,
+        ///        "Reason":"新HRIS PRDS功能測試調整",
+        ///        "type":"非專標案加班",
+        ///        "IsProject":"N"
+        ///        }
         ///     }
         ///     </h2></pre>
         /// </remarks>
-        /// <param name="EmpID" >員工編號</param>
+        /// <param name="EmpID" >員工代號</param>
         /// <param name="WorkDateNo">上班日（格式yyyymmmdd）</param>
-        /// <returns>傳回員工上班日休假資料表</returns>
+        /// <returns>傳回員工單日工時</returns>
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>          
         [HttpGet("EmpID/{EmpID}/WorkDate/{WorkDateNo}/GetEmpLeavebyWorkDate")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<EmpLeaveWorkDateEntity> GetEmpLeaveWorkDates(string EmpID, string WorkDateNo)
+        public IEnumerable<EmpLeavebyWorkDateEntity> GetEmpLeaveWorkDates(string EmpID, string WorkDateNo)
         {
             string WorkDate = WorkDateNo.Substring(0, 4)
                 + "/" + WorkDateNo.Substring(4, 2)
                 + "/" + WorkDateNo.Substring(6, 2);
             string sSQL = "EXEC [whs].[usp_GetEmpLeavebyWorkDate] {0}, {1}";
             var MyHrisDB = new HrisDbContext();
-            var EmpWorkDateList = MyHrisDB.EmpLeaveWorkDateEntities.FromSqlRaw(sSQL, EmpID, WorkDate);
+            var EmpLeavebyWorkDateList = MyHrisDB.EmpLeavebyWorkDateEntitys.FromSqlRaw(sSQL, EmpID, WorkDate);
 
-            return EmpWorkDateList;
+            return EmpLeavebyWorkDateList;
         }
 
 
@@ -210,6 +229,15 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
         /// <summary>
         /// 員工萬年曆狀態列表
         /// </summary>
@@ -224,7 +252,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     }
         ///     </h2></pre>
         /// </remarks>
-        /// <param name="EmpID" >員工編號</param>
+        /// <param name="EmpID" >員工代號</param>
         /// <param name="StartDateNo">傳入日期區間：起始日期</param>
         /// <param name="EndDateNo">傳入日期區間：結束日期</param>
         /// <returns>傳回個人月曆資料清單資料表</returns>
@@ -233,7 +261,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         [HttpGet("EmpID/{EmpID}/StartDate/{StartDateNo}/EndDate/{EndDateNo}/GetWorkingDate")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<EmpWorkingDateEntity> GetWorkingDate(string EmpID, string StartDateNo,string EndDateNo)
+        public IEnumerable<WorkingDateEntity> GetWorkingDate(string EmpID, string StartDateNo, string EndDateNo)
         {
             string StartDate = StartDateNo.Substring(0, 4)
                 + "/" + StartDateNo.Substring(4, 2)
@@ -245,11 +273,10 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
             string sSQL = "EXEC [whs].[usp_GetWorkingDate] {0}, {1}, {2}";
             var MyHrisDB = new HrisDbContext();
-            var EmpLeaveWorkDateList = MyHrisDB.EmpWorkingDateEntitys.FromSqlRaw(sSQL, EmpID, StartDate,EndDate);
+            var WorkingDateList = MyHrisDB.WorkingDateEntitys.FromSqlRaw(sSQL, EmpID, StartDate, EndDate);
 
-            return EmpLeaveWorkDateList;
+            return WorkingDateList;
         }
-
 
 
 
@@ -286,12 +313,12 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         [HttpGet("RowUnid/{RowUnid}/TypeCode/{TypeCode}/JobCode/{JobCode}/GetWorkingHoursDetail")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<WorkingHoursDetailEntity> GetWorkingHoursDetail(string RowUnid, string TypeCode,string JobCode)
+        public IEnumerable<WorkingHoursDetailEntity> GetWorkingHoursDetail(string RowUnid, string TypeCode, string JobCode)
         {
 
             string sSQL = "EXEC [whs].[usp_GetWorkingHoursDetail] {0}, {1}, {2}";
             var MyHrisDB = new HrisDbContext();
-            var WorkingHoursDetailList = MyHrisDB.WorkingHoursDetailEntitys.FromSqlRaw(sSQL, RowUnid, TypeCode,JobCode);
+            var WorkingHoursDetailList = MyHrisDB.WorkingHoursDetailEntitys.FromSqlRaw(sSQL, RowUnid, TypeCode, JobCode);
 
             return WorkingHoursDetailList;
         }
@@ -315,17 +342,17 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     GET /api/v1/whs/duty/RowUnid/00A05C2D-56D4-4C65-906B-B0A0B2B3A4BF/GetWorkingDate
         ///     {
         ///        [{"rowUnid":"00A05C2D-56D4-4C65-906B-B0A0B2B3A4BF",
-        ///        "empID":"309426",
-        ///        "workingDate":"2020-04-07T00:00:00",
-        ///        "totalWorkingHours":0.0,
-        ///        "filledHours":8.0,
-        ///        "isFinish":"0",
-        ///        "typeCode":"C01",
-        ///        "typeName":"CT/ICT",
-        ///        "jobCode":"Bus_1",
-        ///        "jobName":"市話語音",
-        ///        "workingHours":3.5,
-        ///        "note":"TEST"}]
+        ///        "EmpID":"309426",
+        ///        "WorkingDate":"2020-04-07T00:00:00",
+        ///        "totalWorkingHours":4.0,
+        ///        "FilledHours":8.0,
+        ///        "IsFinish":"未送出",
+        ///        "TypeCode":"C01",
+        ///        "TypeName":"CT/ICT",
+        ///        "JobCode":"Bus_1",
+        ///        "JobName":"市話語音",
+        ///        "WorkingHours":3.5,
+        ///        "Note":"TEST"}]
         ///     }
         ///     </h2></pre>
         /// </remarks>
@@ -333,12 +360,12 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <returns>傳回工時填報資料</returns>
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>          
-        [HttpGet("RowUnid/{RowUnid}/GetWorkingDate")]
+        [HttpGet("RowUnid/{RowUnid}/GetWorkingDateAllDetail")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IEnumerable<WorkingDateAllDetailEntity> GetWorkingDateAllDetail(string RowUnid)
         {
-            
+
             string sSQL = "EXEC [whs].[usp_GetWorkingDateAllDetail] {0}";
             var MyHrisDB = new HrisDbContext();
             var WorkingDateAllDetailList = MyHrisDB.WorkingDateAllDetailEntitys.FromSqlRaw(sSQL, RowUnid);
@@ -352,8 +379,11 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
 
+
+
+
         /// <summary>
-        /// 建立工時填報明細資料
+        /// 輸入工時明細
         /// </summary>
         /// <remarks>
         /// <pre><h2>
@@ -373,7 +403,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>          
         [HttpPost]
-        public async Task<ActionResult<EmpWorkingHoursDetailEntity>> InsertWorkingHoursDetail([FromBody]EmpWorkingHoursDetailEntity empWorkingHoursDetailEntity)
+        public async Task<ActionResult<EmpLeavebyWorkDateEntity>> InsertWorkingHoursDetail([FromBody]InsertWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
             
             string RowUnid = empWorkingHoursDetailEntity.RowUnid;
@@ -415,25 +445,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
             return NoContent();
 
-
-            //_context.EmpWorkingHoursDetailEntity.Add(empWorkingHoursDetailEntity);
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateException)
-            //{
-            //    if (EmpWorkingHoursDetailEntityExists(empWorkingHoursDetailEntity.RowUnid))
-            //    {
-            //        return Conflict();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
-            //return CreatedAtAction("GetEmpWorkingHoursDetailEntity", new { id = empWorkingHoursDetailEntity.RowUnid }, empWorkingHoursDetailEntity);
         }
 
 
@@ -473,7 +484,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>     
         [HttpPut]
-        public async Task<ActionResult<EmpWorkingHoursDetailUpdEntity>> UpdateWorkingHoursDetail([FromBody]EmpWorkingHoursDetailUpdEntity empWorkingHoursDetailEntity)
+        public async Task<ActionResult<UpdateWorkingHoursDetailEntity>> UpdateWorkingHoursDetail([FromBody]UpdateWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
 
             string RowUnid = empWorkingHoursDetailEntity.RowUnid;

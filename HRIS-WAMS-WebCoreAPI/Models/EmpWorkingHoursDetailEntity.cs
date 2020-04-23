@@ -8,7 +8,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HRIS_WAMS_WebCoreAPI.Models
 {
-    public class EmpWorkingHoursDetailEntity
+
+
+
+
+    public class InsertWorkingHoursDetailEntity
     {
         [Required]
         [Display(Name = "工時代碼")]
@@ -45,8 +49,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-
-    public class EmpWorkingHoursDetailUpdEntity
+    public class UpdateWorkingHoursDetailEntity
     {
         [Required]
         [Display(Name = "工時代碼")]
@@ -79,7 +82,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-    public class EmpWorkingHoursDetailDelEntity
+    public class DeleteWorkingHoursDetailEntity
     {
         [Required]
         [Display(Name = "工時代碼")]

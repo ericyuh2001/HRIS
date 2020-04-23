@@ -35,24 +35,24 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     }
         ///     </h2></pre>
         /// </remarks>
-        /// <param name="EmpID" >員工編號</param>
+        /// <param name="EmpID" >員工代號</param>
         /// <param name="WorkingDateNo">上班日（格式yyyymmmdd）</param>
         /// <returns>傳回單日JobCode清單</returns>
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>          
-        [HttpGet("{EmpID}/{WorkingDateNo}/GetWorkingDate")]
+        [HttpGet("{EmpID}/{WorkingDateNo}/GetWorkingDateJobCodebyEmpID")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<JobCodeEntity> GetWorkingDate(string EmpID, string WorkingDateNo)
+        public IEnumerable<WorkingDateJobCodebyEmpIDEndity> GetWorkingDateJobCodebyEmpID(string EmpID, string WorkingDateNo)
         {
             string WorkDate = WorkingDateNo.Substring(0, 4)
                 + "/" + WorkingDateNo.Substring(4, 2)
                 + "/" + WorkingDateNo.Substring(6, 2);
             string sSQL = "EXEC [whs].[usp_GetWorkingDateJobCodebyEmpID] {0}, {1}";
             var MyHrisDB = new HrisDbContext();
-            var JobCodeList = MyHrisDB.JobCodeEntitys.FromSqlRaw(sSQL, EmpID, WorkDate);
+            var WorkingDateJobCodebyEmpIDList = MyHrisDB.WorkingDateJobCodebyEmpIDEnditys.FromSqlRaw(sSQL, EmpID, WorkDate);
 
-            return JobCodeList;
+            return WorkingDateJobCodebyEmpIDList;
         }
 
 

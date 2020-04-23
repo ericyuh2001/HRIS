@@ -15,13 +15,61 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-    // 員工萬年曆狀態列表
-    public class EmpWorkingDateEntity
+    // 首頁待填報列表
+    public class AlterbyEmpIDEntity
     {
+        [Required]
+        [Display(Name = "提醒訊息")]
         public string EmpID { get; set; }
-        public DateTime WorkingDate { get; set; }
-        public string IsFinish { get; set; }
+
+        [Required]
+        [Display(Name = "工作日")]
+        public string WorkingDate { get; set; }
+
+
+        [Display(Name = "狀態訊息")]
+        public string status { get; set; }
     }
+
+
+
+
+
+    
+
+
+
+
+    public class EmpLeavebyWorkDateEntity
+    {
+        [Required]
+        [Display(Name = "員工代碼")]
+        public string EmpID { get; set; }
+
+        [Required]
+        [Display(Name = "上班日")]
+        public DateTime WorkDate { get; set; }
+
+        [Display(Name = "套用時數")]
+        public int ApplyHours { get; set; }
+
+        [Display(Name = "備註及說明")]
+        public string Reason { get; set; }
+
+        [Display(Name = "工時類型")]
+        public string type { get; set; }
+
+        [Display(Name = "專案註記")]
+        public string IsProject { get; set; }
+
+    }
+
+
+
+
+
+
+
 
 
 
@@ -29,7 +77,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     public class HomeInfoByEmpEntity
     {
         [Required]
-        [Display(Name = "員工代碼")]
+        [Display(Name = "員工代號")]
         public string EmpID { get; set; }
 
 
@@ -62,6 +110,22 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
+    // 員工萬年曆狀態列表
+    public class WorkingDateEntity
+    {
+        [Display(Name = "員工代號")]
+        public string EmpID { get; set; }
+
+        [Display(Name = "工作日")]
+        public string WorkingDate { get; set; }
+
+        [Display(Name = "填報工作日資料代碼")]
+        public string RowUnid { get; set; }
+
+        [Display(Name = "狀態訊息")]
+        public string IsFinish { get; set; }
+    }
+
 
 
     // 員工單日工時紀錄列表
@@ -72,9 +136,8 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public string RowUnid { get; set; }
 
         [Required]
-        [Display(Name = "員工代碼")]
+        [Display(Name = "員工代號")]
         public string EmpID { get; set; }
-
 
 
         [Required]
@@ -82,11 +145,11 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public DateTime WorkingDate { get; set; }
 
         
-        [Display(Name = "合計工時")]
+        [Display(Name = "當日已填報工時")]
         public decimal totalWorkingHours { get; set; }
 
 
-        [Display(Name = "已填報工時")]
+        [Display(Name = "應填工時")]
         public decimal FilledHours { get; set; }
 
 
@@ -111,7 +174,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-        [Display(Name = "工時")]
+        [Display(Name = "已填工時")]
         public decimal WorkingHours { get; set; }
 
 
