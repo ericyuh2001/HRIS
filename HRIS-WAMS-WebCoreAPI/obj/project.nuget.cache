@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ztRv1dkDTsXY55ELvrPYlj2tcFtMJB7xK9uDJra5ErQQKWNgfE12Jnt4DhifaryLjEw7VyjXKZDK6VQ586Oi6w==",
+  "dgSpecHash": "0WM2ZXdMEr42PQkp9TDPweX1YpvfbWjUQat72GK/LhoLKUXvUIWyyDHCTtvkfzOFZQnJPqfmqEzZhlrARXW5cg==",
   "success": true,
   "projectFilePath": "C:\\[Project]\\工時系統\\HRIS-WAMS-WebCoreAPI\\HRIS-WAMS-WebCoreAPI\\HRIS-WAMS-WebCoreAPI.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,9 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\nlog\\4.7.0\\nlog.4.7.0.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\nlog.extensions.logging\\1.6.2\\nlog.extensions.logging.1.6.2.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.2\\nlog.web.aspnetcore.4.9.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

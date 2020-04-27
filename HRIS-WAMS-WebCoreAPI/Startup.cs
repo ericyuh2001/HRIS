@@ -40,7 +40,7 @@ namespace HRIS_WAMS_WebCoreAPI
                 {
                     Version = "v1",
                     Title = "HRIS-WAMS ASP.NET Core API",
-                    Description = " HRIS-WAMS ASP.NET Core API 04.24",
+                    Description = " HRIS-WAMS ASP.NET Core API 04.27",
                     TermsOfService = new Uri("https://www.cht.com.tw/terms"),
                     Contact = new OpenApiContact
                     {
