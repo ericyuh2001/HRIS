@@ -38,23 +38,24 @@ namespace HRIS_WAMS_WebCoreAPI
 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "v1",
-                    Title = "HRIS-WAMS ASP.NET Core API",
-                    Description = " HRIS-WAMS ASP.NET Core API 04.27",
-                    TermsOfService = new Uri("https://www.cht.com.tw/terms"),
+                    Version = "v1 (04/28)",
+                    Title = "HRIS-WAMS 工時系統 API",
+                    Description = "",
+                    //TermsOfService = new Uri("https://www.cht.com.tw/terms"),
                     Contact = new OpenApiContact
                     {
                         Name = "總公司",
-                        Email = string.Empty,
-                        Url = new Uri("https://twitter.com/spboyer"),
+                        Email = string.Empty
+                        //Url = new Uri("https://twitter.com/spboyer"),
                     },
-                    License = new OpenApiLicense
-                    {
-                        Name = "北區分公司",
-                        Url = new Uri("https://www.csi.com.tw/license"),
-                    }
+                    //License = new OpenApiLicense
+                    //{
+                    //    Name = "北區分公司",
+                    //    Url = new Uri("https://www.csi.com.tw/license"),
+                    //}
                 });
 
+               
                 // Configure Swagger to use the xml documentation file
                 var xmlFile = Path.ChangeExtension(typeof(Startup).Assembly.Location, ".xml");
                 c.IncludeXmlComments(xmlFile);
@@ -75,7 +76,16 @@ namespace HRIS_WAMS_WebCoreAPI
 
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            //app.UseSwagger();
+            app.UseSwagger( c=>
+            {
+                c.PreSerializeFilters.Add((swagger, httpReq) =>
+                {
+                    swagger.Servers = new List<OpenApiServer> { 
+                        new OpenApiServer { 
+                            Url = @"http://10.172.18.146:8081/api/v1/whs/" } };
+                });
+            });
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
