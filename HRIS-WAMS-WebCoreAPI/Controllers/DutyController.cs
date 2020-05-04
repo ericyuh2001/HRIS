@@ -116,6 +116,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             var MyHrisDB = new HrisDbContext();
             var AlterbyEmpIDInfo = MyHrisDB.AlterbyEmpIDEntitys.FromSqlRaw(sSQL, EmpID);
 
+
             return AlterbyEmpIDInfo;
         }
 
@@ -187,8 +188,47 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
 
+        ///// <summary>
+        ///// 抓取員工首頁資訊
+        ///// </summary>
+        ///// <remarks>
+        ///// <pre><h2>
+        ///// 回傳範例
+        /////     GET /api/v1/whs/duty/EmpID/692197/GetHomeInfoByEmp
+        /////     {
+        /////        "EmpID":"692197",
+        /////        "EmpName":"李蕙芬",
+        /////        "Sex":"2",
+        /////        "message":"您目前尚無待辦事項須處理",
+        /////        "WriteRedPoint":"1",
+        /////        "SignRedPoint":"1",
+        /////        "RoleID":"A",
+        /////     }
+        /////     </h2></pre>
+        ///// </remarks>
+        ///// <param name="EmpID" >員工代號</param>
+        ///// <returns>傳回員工首頁資訊</returns>
+        ///// <response code="201">代碼201說明描述</response>
+        ///// <response code="400">代碼401說明描述</response>          
+        //[HttpGet("EmpID/{EmpID}/GetHomeInfoByEmp")]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public IEnumerable<HomeInfoByEmpEntity> GetHomeInfoByEmp(string EmpID)
+        //{
+        //    string sSQL = "EXEC [whs].[usp_GetHomeInfoByEmp] {0}";
+        //    var MyHrisDB = new HrisDbContext();
+        //    var HomeInfoByEmpList = MyHrisDB.HomeInfoByEmpEntitys.FromSqlRaw(sSQL, EmpID);
+
+        //    return HomeInfoByEmpList;
+        //}
+
+
+
+
+
+
         /// <summary>
-        /// 抓取員工首頁資訊
+        /// 抓取員工首頁資訊，包含首頁待填列表
         /// </summary>
         /// <remarks>
         /// <pre><h2>
@@ -212,16 +252,26 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         [HttpGet("EmpID/{EmpID}/GetHomeInfoByEmp")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<HomeInfoByEmpEntity> GetHomeInfoByEmp(string EmpID)
+        public HomeInfoWithAlterByEmpEntity GetHomeInfoByEmp(string EmpID)
         {
-            string sSQL = "EXEC [whs].[usp_GetHomeInfoByEmp] {0}";
+            HomeInfoWithAlterByEmpEntity HomeInfoWithAlterByEmpInfo = new HomeInfoWithAlterByEmpEntity();
+
+            string sSQL = "EXEC [whs].[usp_GetAlterbyEmpID] {0}";
             var MyHrisDB = new HrisDbContext();
-            var HomeInfoByEmpList = MyHrisDB.HomeInfoByEmpEntitys.FromSqlRaw(sSQL, EmpID);
+            //IEnumerable<AlterbyEmpIDEntity> AlterbyEmpIDListInfo = MyHrisDB.AlterbyEmpIDEntitys.FromSqlRaw(sSQL, EmpID).ToList();
+            List<AlterbyEmpIDEntity> AlterbyEmpIDListInfo = MyHrisDB.AlterbyEmpIDEntitys.FromSqlRaw(sSQL, EmpID).ToList();
 
-            return HomeInfoByEmpList;
+
+            sSQL = "EXEC [whs].[usp_GetHomeInfoByEmp] {0}";
+            IEnumerable<HomeInfoByEmpEntity> HomeInfoByEmpListInfo = MyHrisDB.HomeInfoByEmpEntitys.FromSqlRaw(sSQL, EmpID);
+
+                        
+            HomeInfoWithAlterByEmpInfo.alterListInfo = AlterbyEmpIDListInfo;
+            HomeInfoWithAlterByEmpInfo.homeInfo = HomeInfoByEmpListInfo;
+            
+
+            return HomeInfoWithAlterByEmpInfo;
         }
-
-
 
 
 

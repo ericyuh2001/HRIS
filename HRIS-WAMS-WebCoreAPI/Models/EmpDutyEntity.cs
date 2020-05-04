@@ -69,7 +69,13 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-
+    // 員工首頁資訊 & 首頁待填報列表
+    public class HomeInfoWithAlterByEmpEntity
+    {
+        public IEnumerable<HomeInfoByEmpEntity> homeInfo { get; set; }
+        //public IEnumerable<AlterbyEmpIDEntity> AlterListInfo { get; set; }
+        public List<AlterbyEmpIDEntity> alterListInfo { get; set; }
+    }
 
 
 
