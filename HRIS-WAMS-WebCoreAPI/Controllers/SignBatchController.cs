@@ -21,21 +21,21 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <remarks>
         /// <pre><h2>
         /// 傳入範例   
-        ///     POST /api/v1/whs/signbatch   
+        ///     POST /api/v1/whs/signBatch   
         ///     {   
-        ///         "SignID":"692197",
-        ///         "IsApproval":"1",
-        ///         "ApprovedItemCount":2,
-        ///         "SignBatchDetailInfo":[
+        ///         "signID":"692197",
+        ///         "isApproval":"1",
+        ///         "signBatchDetailList":
+        ///         [
         ///             {
-        ///             "FlowID":"1020200413001997002",
-        ///             "WorkingHours":40
+        ///                 "FlowID":"1020200413001997002",
+        ///                 "WorkingHours":40
         ///             },
         ///             {
-        ///             "FlowID":"1020200421001997001",
-        ///             "WorkingHours":40
+        ///                 "FlowID":"1020200421001997001",
+        ///                 "WorkingHours":40
         ///             }
-        ///             ]
+        ///         ]
         ///     }
         /// </h2></pre>
         /// </remarks>
@@ -46,6 +46,17 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
         }
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

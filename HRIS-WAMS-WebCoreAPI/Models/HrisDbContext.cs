@@ -30,7 +30,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         // 員工單日工時紀錄列表
         public virtual DbSet<WorkingDateAllDetailEntity> WorkingDateAllDetailEntitys { get; set; }
 
-        // 員工單日可填報項目
+        // 員工單筆工時明細
         public virtual DbSet<WorkingHoursDetailEntity> WorkingHoursDetailEntitys { get; set; }
 
         public virtual DbSet<EmpLeavebyWorkDateEntity> EmpWorkingHoursDetailEntitys { get; set; }

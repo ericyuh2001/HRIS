@@ -15,68 +15,18 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-    // 首頁待填報列表
-    public class AlterbyEmpIDEntity
-    {
-        [Required]
-        [Display(Name = "提醒訊息")]
-        public string EmpID { get; set; }
-
-        [Required]
-        [Display(Name = "工作日")]
-        public string WorkingDate { get; set; }
-
-
-        [Display(Name = "狀態訊息")]
-        public string status { get; set; }
-    }
 
 
 
 
-
-    
-
-
-
-
-    public class EmpLeavebyWorkDateEntity
-    {
-        [Required]
-        [Display(Name = "員工代碼")]
-        public string EmpID { get; set; }
-
-        [Required]
-        [Display(Name = "上班日")]
-        public DateTime WorkDate { get; set; }
-
-        [Display(Name = "套用時數")]
-        public int ApplyHours { get; set; }
-
-        [Display(Name = "備註及說明")]
-        public string Reason { get; set; }
-
-        [Display(Name = "工時類型")]
-        public string type { get; set; }
-
-        [Display(Name = "專案註記")]
-        public string IsProject { get; set; }
-
-    }
-
-
-
-
-
-
+    #region "員工首頁資訊 & 首頁待填報列表"
     // 員工首頁資訊 & 首頁待填報列表
     public class HomeInfoWithAlterByEmpEntity
     {
-        public IEnumerable<HomeInfoByEmpEntity> homeInfo { get; set; }
-        //public IEnumerable<AlterbyEmpIDEntity> AlterListInfo { get; set; }
+        public HomeInfoByEmpEntity homeInfo { get; set; }
         public List<AlterbyEmpIDEntity> alterListInfo { get; set; }
+        public List<WaitApproveEntity> waitApproveListInfo { get; set; }
     }
-
 
 
     // 員工首頁資訊
@@ -109,6 +59,81 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         [Display(Name = "角色代碼")]
         public string RoleID { get; set; }
     }
+
+
+
+
+    // 首頁待填報列表
+    public class AlterbyEmpIDEntity
+    {
+        [Required]
+        [Display(Name = "提醒訊息")]
+        public string EmpID { get; set; }
+
+        [Required]
+        [Display(Name = "工作日")]
+        public string WorkingDate { get; set; }
+
+
+        [Display(Name = "狀態訊息")]
+        public string status { get; set; }
+    }
+    #endregion
+
+
+
+
+
+
+
+
+
+    public class EmpLeaveWithWorkDateDetailEntity
+    {
+        public EmpWorkdateEntity workDate { get; set; }
+
+        // 抓取員工單日假單、加班單&判斷員工單日工時
+        public List<EmpLeavebyWorkDateEntity> EmpLeavebyWorkDateList { get; set; }
+
+    }
+
+
+    public class EmpWorkdateEntity
+    {
+
+    }
+
+
+    // 員工單日假單、加班單&判斷員工單日工時
+    public class EmpLeavebyWorkDateEntity
+    {
+        [Required]
+        [Display(Name = "員工代碼")]
+        public string EmpID { get; set; }
+
+        [Required]
+        [Display(Name = "上班日")]
+        public DateTime WorkDate { get; set; }
+
+        [Display(Name = "套用時數")]
+        public int ApplyHours { get; set; }
+
+        [Display(Name = "備註及說明")]
+        public string Reason { get; set; }
+
+        [Display(Name = "工時類型")]
+        public string type { get; set; }
+
+        [Display(Name = "專案註記")]
+        public string IsProject { get; set; }
+
+    }
+
+
+
+
+
+
 
 
 
@@ -196,15 +221,14 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-    // 員工單日可填報項目
+    // 員工單筆工時明細
     public class WorkingHoursDetailEntity
     {
         [Required]
         [Display(Name = "工時填報資料代碼")]
         public string RowUnid { get; set; }
 
-        [Display(Name = "工時")]
-        public decimal WorkingHours { get; set; }
+       
 
         [Display(Name = "工時類別代碼")]
         public string TypeCode { get; set; }
@@ -212,6 +236,8 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         [Display(Name = "Job代碼")]
         public string JobCode { get; set; }
 
+        [Display(Name = "工時")]
+        public decimal WorkingHours { get; set; }
 
         [Display(Name = "備註")]
         public string Note { get; set; }

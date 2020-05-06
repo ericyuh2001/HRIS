@@ -299,8 +299,8 @@ C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\ne
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.xml
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.pdb
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.genruntimeconfig.cache
-C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.csprojAssemblyReference.cache
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\nlog.config
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\NLog.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
+C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Debug\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.csprojAssemblyReference.cache
