@@ -23,7 +23,7 @@
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>          
         </member>
-        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.DeleteWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.DeleteWorkingHoursDetailEntity)">
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.DeleteWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.DeleteWorkingHoursDetailHandleEntity)">
             <summary>
             刪除填報資料
             </summary>
@@ -32,8 +32,9 @@
             回傳範例
                 DELETE /api/v1/whs/duty
                 {
-                    "RowUnid":"11111CF1-4449-4772-8601-58A478DF110B",
-                    "DeletedBy":"001234"
+                    "RowUnid":"9C821CF6-535F-44D2-96D1-41D61B8BDB1C",
+                    "TypeCode":"B01",
+                    "JobCode":"Bus_83"
                 }
                 </h2></pre>
             </remarks>

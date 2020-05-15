@@ -82,15 +82,18 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-    public class DeleteWorkingHoursDetailEntity
+    public class DeleteWorkingHoursDetailHandleEntity
     {
         [Required]
         [Display(Name = "工時代碼")]
         public string RowUnid { get; set; }
 
 
-        [Display(Name = "刪除")]
-        public string DeletedBy { get; set; }
+        [Display(Name = "Type代碼")]
+        public string TypeCode { get; set; }
+
+        [Display(Name = "Job代碼")]
+        public string JobCode { get; set; }
 
     }
 

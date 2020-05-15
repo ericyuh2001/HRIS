@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HRIS_WAMS_WebCoreAPI.Models;
 using Microsoft.Data.SqlClient.Server;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
+using System.Net;
 
 namespace HRIS_WAMS_WebCoreAPI.Controllers
 {
@@ -35,8 +36,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 回傳範例
         ///     DELETE /api/v1/whs/duty
         ///     {
-        ///         "RowUnid":"11111CF1-4449-4772-8601-58A478DF110B",
-        ///         "DeletedBy":"001234"
+        ///         "RowUnid":"9C821CF6-535F-44D2-96D1-41D61B8BDB1C",
+        ///         "TypeCode":"B01",
+        ///         "JobCode":"Bus_83"
         ///     }
         ///     </h2></pre>
         /// </remarks>
@@ -44,38 +46,42 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <response code="201">代碼201說明描述</response>
         /// <response code="400">代碼401說明描述</response>     
         [HttpDelete]
-        public async Task<ActionResult<DeleteWorkingHoursDetailEntity>> DeleteWorkingHoursDetail([FromBody]DeleteWorkingHoursDetailEntity empWorkingHoursDetailEntity)
+        public IActionResult  DeleteWorkingHoursDetail([FromBody]DeleteWorkingHoursDetailHandleEntity empWorkingHoursDetailHandleInfo)
         {
+            // =======================================================
+            string RowUnid = empWorkingHoursDetailHandleInfo.RowUnid.Trim();
+            string TypeCode = empWorkingHoursDetailHandleInfo.TypeCode.Trim();
+            string JobCode = empWorkingHoursDetailHandleInfo.JobCode.Trim();
 
 
-            string RowUnid = empWorkingHoursDetailEntity.RowUnid;
-            string DeletedBy = empWorkingHoursDetailEntity.DeletedBy;
-
-
-            string[] param = new[] {
-                RowUnid
+            string[] arySqlParam = new[] {
+                RowUnid, TypeCode, JobCode
             };
 
-            string sSQL = @"EXEC [whs].[usp_DeleteWorkingHoursDetail] 
-                        @RowUnid = {0}";
-            var MyHrisDB = new HrisDbContext();
-
-
-            try
-            {
-                MyHrisDB.Database.ExecuteSqlRaw(sSQL, param);
-            }
-            catch
+            if (RowUnid == string.Empty || TypeCode == string.Empty || JobCode == string.Empty)
             {
                 return BadRequest();
             }
 
 
+            // ===================================================================
+            string sSQL = @"EXEC [whs].[usp_DeleteWorkingHoursDetail] 
+                        @RowUnid = {0}, 
+                        @TypeCode = {1}, 
+                        @JobCode = {2}";
+            var MyHrisDB = new HrisDbContext();
+
+            try
+            {
+                MyHrisDB.Database.ExecuteSqlRaw(sSQL, arySqlParam);
+            }
+            catch
+            {
+                return NotFound();
+            }
 
 
-            return NoContent();
-
-
+            return Ok();
         }
 
 
