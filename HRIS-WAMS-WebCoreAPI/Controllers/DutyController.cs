@@ -399,7 +399,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
             // 取得：單日填報統計
             sSQL = "EXEC [whs].[usp_GetWorkingDateAllDetail] {0}";
-            var EmpWorkdateListInfo = MyHrisDB.EmpWorkdateEntitys.FromSqlRaw(sSQL, RowUnid).ToList();
+            var EmpWorkdateListInfo = MyHrisDB.EmpWorkdateEntitys.FromSqlRaw(sSQL, RowUnid)
+                    .ToList();
             if (EmpWorkdateListInfo != null && EmpWorkdateListInfo.Count > 0)
             {
                 EmpLeaveWithWorkDateDetailInfo.WorkDate = EmpWorkdateListInfo.First();
@@ -570,7 +571,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     GET /api/v1/whs/duty/EmpID/373409/StartDate/20200301/EndDate/20200331/GetWorkingDate
         ///     {
         ///        "empID":"373409",
-        ///        "workingDate":"2020-03-01T00:00:00",
+        ///        "workingDate":"2020-03-01",
         ///        "isFinish":"9"
         ///     }
         ///     </h2></pre>

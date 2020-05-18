@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace HRIS_WAMS_WebCoreAPI.Models
 {
@@ -108,7 +109,22 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     {
         [Required]
         [Display(Name = "工作日")]
+        [JsonIgnore]
         public DateTime WorkingDate { get; set; }
+
+        [Display(Name = "工作日")]
+        [JsonPropertyName("workingDate")]
+        public string WorkingDateString
+        {
+            get
+            {
+                return WorkingDate.ToString("yyyy-MM-dd");
+            }
+            set
+            {
+
+            }
+        }
 
         [Display(Name = "申請案件狀態")]
         public string IsFinish  { get; set; }
@@ -125,8 +141,23 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         [Display(Name = "員工代碼")]
         public string EmpID { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         [Display(Name = "上班日")]
         public DateTime WorkingDate { get; set; }
+
+        [Display(Name = "上班日")]
+        [JsonPropertyName("workingDate")]
+        public string WorkingDateString 
+        { 
+            get 
+            {
+                return WorkingDate.ToString("yyyy-MM-dd");
+            }
+            set
+            {
+
+            } 
+        }
 
         [Display(Name = "已填工時")]
         public decimal TotalWorkingHours { get; set; }
@@ -150,7 +181,22 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
         [Required]
         [Display(Name = "上班日")]
+        [JsonIgnore]
         public DateTime WorkDate { get; set; }
+
+        [Display(Name = "上班日")]
+        [JsonPropertyName("workDate")]
+        public string WorkDateString
+        {
+            get
+            {
+                return WorkDate.ToString("yyyy-MM-dd");
+            }
+            set
+            {
+
+            }
+        }
 
         [Display(Name = "套用時數")]
         public int ApplyHours { get; set; }
@@ -284,7 +330,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public string EmpID { get; set; }
 
         [Display(Name = "工作日")]
-        public DateTime WorkingDate { get; set; }
+        public string WorkingDate { get; set; }
 
         [Display(Name = "填報工作日資料代碼")]
         public string RowUnid { get; set; }

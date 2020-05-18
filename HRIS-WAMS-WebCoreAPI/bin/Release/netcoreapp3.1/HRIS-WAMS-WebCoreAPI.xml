@@ -203,7 +203,7 @@
                 GET /api/v1/whs/duty/EmpID/373409/StartDate/20200301/EndDate/20200331/GetWorkingDate
                 {
                    "empID":"373409",
-                   "workingDate":"2020-03-01T00:00:00",
+                   "workingDate":"2020-03-01",
                    "isFinish":"9"
                 }
                 </h2></pre>

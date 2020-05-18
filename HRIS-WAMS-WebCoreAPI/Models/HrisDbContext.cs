@@ -83,7 +83,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         /// </remarks>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            //optionsBuilder.UseSqlServer(@"Data Source=T450S\MSSQLSERVER2012;Initial Catalog=HRIS;Integrated Security=True;Persist Security Info=True");
             //optionsBuilder.UseSqlServer(@"Data Source=10.16.15.10;Initial Catalog=HRIS;User ID=WAMSU;Password=P@ss1234;");
             //optionsBuilder.UseSqlServer(@"Data Source=10.160.35.172;Initial Catalog=HRM;User ID=HRIS_WHSU;Password=1qaz@WSX3edc");
             optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-J342AH8\SQLEXPRESS;Initial Catalog=HRIS;User ID=HRIS_WHSU;Password=1qaz@WSX3edc");
@@ -103,18 +103,21 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             modelBuilder.Entity<EmpLeavebyWorkDateEntity>(entity =>
             {
                 entity.HasKey(e => e.EmpID);
+                entity.Ignore(e => e.WorkDateString);
             });
 
             // 員工單日工時紀錄列表
             modelBuilder.Entity<EmpWorkdateEntity>(entity =>
             {
                 entity.HasKey(e => e.RowUnid);
+                entity.Ignore(e => e.WorkingDateString);
             });
 
             // 員工週間每日狀態顯示
             modelBuilder.Entity<EmpWorkingDateStatusList>(entity =>
             {
                 entity.HasKey(e => e.WorkingDate);
+                entity.Ignore(e => e.WorkingDateString);
             });
 
             // 抓取員工首頁資訊
