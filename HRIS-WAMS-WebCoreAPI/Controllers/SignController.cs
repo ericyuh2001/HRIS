@@ -222,15 +222,16 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         [HttpGet("EmpID/{EmpID}/StartDate/{StartDateNo}/EndDate/{EndDateNo}/GetWaitApproveDetail")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<AlterbyEmpIDEntity> GetWaitApproveDetailByDateRange(string EmpID, string StartDateNo, string EndDateNo)
+        public ContentResult GetWaitApproveDetailByDateRange(string EmpID, string StartDateNo, string EndDateNo)
         {
 
             string sSQL = "EXEC [whs].[usp_GetAlterbyEmpID] {0}";
             var MyHrisDB = new HrisDbContext();
             var AlterbyEmpIDInfo = MyHrisDB.AlterbyEmpIDEntitys.FromSqlRaw(sSQL, EmpID);
 
-
-            return AlterbyEmpIDInfo;
+            string sJson = @"{  ""waitApproveStatic"": {    ""itemCount"": 9  },  ""waitApproveList"": [    {      ""flowID"": ""1020200413001997001                 "",      ""empID"": ""024457"",      ""empName"": ""高國華"",      ""totalHour"": 40    },    {      ""flowID"": ""1020200413001997002                 "",      ""empID"": ""138559"",      ""empName"": ""陳毓琦       "",      ""totalHour"": 40    },    {      ""flowID"": ""1020200413991997003                 "",      ""empID"": ""557783"",      ""empName"": ""吳晉寶       "",      ""totalHour"": 40    },    {      ""flowID"": ""1020200413001868003                 "",      ""empID"": ""694751"",      ""empName"": ""蔣孝澈       "",      ""totalHour"": 40    },    {      ""flowID"": ""102020062100199755                 "",      ""empID"": ""256475"",      ""empName"": ""梁美珍       "",      ""totalHour"": 40    },    {      ""flowID"": ""102020023304297021                 "",      ""empID"": ""246541"",      ""empName"": ""朱心誠       "",      ""totalHour"": 40    },    {      ""flowID"": ""102020040012370121                 "",      ""empID"": ""233465"",      ""empName"": ""陳邦本       "",      ""totalHour"": 40    },    {      ""flowID"": ""102020045500199452                 "",      ""empID"": ""245315"",      ""empName"": ""陳立文       "",      ""totalHour"": 40    },    {      ""flowID"": ""1020200234001455622                 "",      ""empID"": ""132345"",      ""empName"": ""高石頭       "",      ""totalHour"": 40    }  ]}";
+           
+            return new ContentResult { Content = sJson, ContentType = "application/json" };
         }
 
 
@@ -299,7 +300,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         [HttpGet("EmpID/{EmpID}/StartDate/{StartDateNo}/EndDate/{EndDateNo}/GetWaitApproveDayStatic")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<AlterbyEmpIDEntity> GetWaitApproveDayStaticByDateRange(string EmpID, string StartDateNo, string EndDateNo)
+        public ContentResult GetWaitApproveDayStaticByDateRange(string EmpID, string StartDateNo, string EndDateNo)
         {
 
             string sSQL = "EXEC [whs].[usp_GetAlterbyEmpID] {0}";
@@ -307,7 +308,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             var AlterbyEmpIDInfo = MyHrisDB.AlterbyEmpIDEntitys.FromSqlRaw(sSQL, EmpID);
 
 
-            return AlterbyEmpIDInfo;
+            string sJson = @"[                {                    ""workingDate"":""2020-04-01"",                    ""waitApproveItemCount"":0,                    ""isFinish"":""已批核""                },                {                    ""workingDate"":""2020-04-02"",                    ""waitApproveItemCount"":0,                    ""isFinish"":""已批核""                },                {                    ""workingDate"":""2020-04-03"",                    ""waitApproveItemCount"":0,                    ""isFinish"":""已批核""                },                {                    ""workingDate"":""2020-04-06"",                    ""waitApproveItemCount"":10,                    ""isFinish"":""未批核""                },                {                    ""workingDate"":""2020-04-08"",                    ""waitApproveItemCount"":30,                    ""isFinish"":""未批核""                },                {                    ""workingDate"":""2020-04-09"",                    ""waitApproveItemCount"":40,                    ""isFinish"":""未批核""                },                {                    ""workingDate"":""2020-04-10"",                    ""waitApproveItemCount"":20,                    ""isFinish"":""未批核""                },                {                    ""workingDate"":""2020-04-13"",                    ""waitApproveItemCount"":5,                    ""isFinish"":""未批核""                }                ]";
+
+            return new ContentResult { Content = sJson, ContentType = "application/json" };
         }
 
 

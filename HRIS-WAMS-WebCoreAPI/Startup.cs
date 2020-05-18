@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 
 using System.Reflection;
 using System.IO;
+using Microsoft.CodeAnalysis.Options;
 
 namespace HRIS_WAMS_WebCoreAPI
 {
@@ -26,11 +27,27 @@ namespace HRIS_WAMS_WebCoreAPI
 
         public IConfiguration Configuration { get; }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                              builder =>
+                              {
+                                  builder.WithOrigins("http://*.cht.com.tw",
+                                                      "http://*.miraclemobile.com.tw")
+                                    .AllowAnyHeader()
+                                    .AllowAnyOrigin()
+                                    .AllowAnyMethod();
+                                  ;
+                              });
+            });
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -38,7 +55,7 @@ namespace HRIS_WAMS_WebCoreAPI
 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "v0.17 (05/15)",
+                    Version = "v0.18 (05/18)",
                     Title = "HRIS-WAMS 工時系統 API",
                     Description = "",
                     //TermsOfService = new Uri("https://www.cht.com.tw/terms"),
@@ -95,6 +112,10 @@ namespace HRIS_WAMS_WebCoreAPI
             });
 
             app.UseRouting();
+
+            // Calls the UseCors extension method and specifies the _myAllowSpecificOrigins CORS policy. UseCors adds the CORS middleware. The call to UseCors must be placed after UseRouting, but before UseAuthorization. For more information, see Middleware order
+            // With endpoint routing, the CORS middleware must be configured to execute between the calls to UseRouting and UseEndpoints
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
