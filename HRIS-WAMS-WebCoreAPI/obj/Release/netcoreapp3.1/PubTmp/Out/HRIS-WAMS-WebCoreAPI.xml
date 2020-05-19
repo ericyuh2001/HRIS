@@ -221,6 +221,7 @@
             <pre><h2>
             傳入範例
                 POST /api/v1/whs/duty
+                Sample 1
                 {
                     "RowUnid":"00000CF1-4449-4772-8601-58A478DF110B",
                     "TypeCode":"C01",
@@ -228,6 +229,16 @@
                     "WorkingHours":1,
                     "Note":"Test_001",
                     "CreatedBy":"002688"
+                }
+                
+                Sample 2
+                {
+                    "RowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
+                    "TypeCode":"J04",
+                    "JobCode":"J04_99_1_1",
+                    "WorkingHours":2,
+                    "Note":"Test_260169_J04_J04_99_1_1",
+                    "CreatedBy":"260169"
                 }
                 </h2></pre>
             </remarks>
@@ -243,6 +254,7 @@
             <pre><h2>
             回傳範例
                 PUT /api/v1/whs/duty
+                Sample 1
                 {
                     "RowUnid":"00000CF1-4449-4772-8601-58A478DF110B",
                     "TypeCode":"C01",
@@ -250,6 +262,16 @@
                     "WorkingHours":1,
                     "Note":"Test_001",
                     "CreatedBy":"002688"
+                }
+                
+                Sample 
+                {
+                    "RowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
+                    "TypeCode":"J04",
+                    "JobCode":"J04_99_1_1",
+                    "WorkingHours":3,
+                    "Note":"Test_260169_J04_J04_99_1_1_3",
+                    "CreatedBy":"Tester"
                 }
                 </h2></pre>
             </remarks>
@@ -505,7 +527,7 @@
             <remarks>
             <pre><h2>
             回傳範例
-                GET /api/v1/whs/sign/EmpID/726124/StartDate/20200405/EndDate/20200411/GetWaitApproveDetail
+                GET /api/v1/whs/sign/EmpID/726124/StartDate/20200413/EndDate/20200419/GetWaitApproveDetail
                 {
                     "waitApproveStatic":
                         {
@@ -575,8 +597,6 @@
             <param name="StartDateNo">傳入日期區間：起始日期</param>
             <param name="EndDateNo">傳入日期區間：結束日期</param>
             <returns>傳回週間待批工時清單</returns>
-            <response code="201">代碼201說明描述</response>
-            <response code="400">代碼401說明描述</response>          
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.GetWaitApproveDayStaticByDateRange(System.String,System.String,System.String)">
             <summary>
@@ -585,7 +605,7 @@
             <remarks>
             <pre><h2>
             回傳範例
-                GET /api/v1/whs/sign/EmpID/726124/StartDate/20200401/EndDate/20200430/GetWaitApproveDayStatic
+                GET /api/v1/whs/sign/EmpID/726124/StartDate/20200301/EndDate/20200331/GetWaitApproveDayStatic
                 [
                 {
                     "workingDate":"2020-04-01",

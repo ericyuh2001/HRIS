@@ -686,6 +686,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <pre><h2>
         /// 傳入範例
         ///     POST /api/v1/whs/duty
+        ///     Sample 1
         ///     {
         ///         "RowUnid":"00000CF1-4449-4772-8601-58A478DF110B",
         ///         "TypeCode":"C01",
@@ -693,6 +694,16 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "WorkingHours":1,
         ///         "Note":"Test_001",
         ///         "CreatedBy":"002688"
+        ///     }
+        ///     
+        ///     Sample 2
+        ///     {
+        ///         "RowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
+        ///         "TypeCode":"J04",
+        ///         "JobCode":"J04_99_1_1",
+        ///         "WorkingHours":2,
+        ///         "Note":"Test_260169_J04_J04_99_1_1",
+        ///         "CreatedBy":"260169"
         ///     }
         ///     </h2></pre>
         /// </remarks>
@@ -739,9 +750,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             }
 
 
-
-            return NoContent();
-
+            return Ok();
         }
 
 
@@ -767,6 +776,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <pre><h2>
         /// 回傳範例
         ///     PUT /api/v1/whs/duty
+        ///     Sample 1
         ///     {
         ///         "RowUnid":"00000CF1-4449-4772-8601-58A478DF110B",
         ///         "TypeCode":"C01",
@@ -774,6 +784,16 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "WorkingHours":1,
         ///         "Note":"Test_001",
         ///         "CreatedBy":"002688"
+        ///     }
+        ///     
+        ///     Sample 
+        ///     {
+        ///         "RowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
+        ///         "TypeCode":"J04",
+        ///         "JobCode":"J04_99_1_1",
+        ///         "WorkingHours":3,
+        ///         "Note":"Test_260169_J04_J04_99_1_1_3",
+        ///         "CreatedBy":"Tester"
         ///     }
         ///     </h2></pre>
         /// </remarks>

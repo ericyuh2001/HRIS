@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using System.Security.Policy;
 
 namespace HRIS_WAMS_WebCoreAPI.Models
 {
@@ -26,6 +28,102 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public string message { get; set; }
 
     }
+
+
+
+
+
+    // 批核工時-待批月曆及單日批核總計狀態
+    public class WaitApproveDayStaticEntity
+    {
+        [Display(Name = "簽核表單編號")]
+        public string FlowID { get; set; }
+
+
+        [Display(Name = "簽核狀態")]
+        public string IsFinish { get; set; }
+
+
+        [JsonIgnore]
+        [Display(Name = "工作日")]
+        public DateTime WorkingDate { get; set; }
+
+
+        [Display(Name = "工作日")]
+        [JsonPropertyName("workDate")]
+        public string WorkDateString
+        {
+            get
+            {
+                return WorkingDate.ToString("yyyy-MM-dd");
+            }
+            set
+            {
+
+            }
+        }
+
+        [Display(Name = "待批案件筆數")]
+        public int WaitApproveItemCount { get; set; }
+    }
+
+
+
+    // 主管週間工時待批列表：合併
+    public class WaitApproveStaticAndDetailEntity
+    {
+        [Display(Name = "週間工時申請待批統計")]
+        public WaitApproveStaticEntity WaitApproveStatic { get; set; }
+
+        [Display(Name = "週間工時申請待批明細")]
+        public List<WaitApproveDetailEntity> WaitApproveList { get; set; }
+    }
+
+
+    // 主管週間工時待批列表：統計
+    public class WaitApproveStaticEntity
+    {
+        int m_ItemCount = 0;
+
+        public WaitApproveStaticEntity(int Value)
+        {
+            m_ItemCount = Value;
+        }
+
+        [Display(Name = "待批筆數")]
+        public int ItemCount 
+        { 
+            get
+            {
+                return m_ItemCount;
+            }
+            set
+            {
+                m_ItemCount = value;
+            }
+        }
+    }
+
+
+    // 主管週間工時待批列表：明細
+    public class WaitApproveDetailEntity
+    {
+        [Display(Name = "簽核表單編號")]
+        public string FlowID { get; set; }
+
+
+        [Display(Name = "員工代碼")]
+        public string EmpID { get; set; }
+
+
+        [Display(Name = "員工姓名")]
+        public string EmpName { get; set; }
+
+
+        [Display(Name = "申請時數")]
+        public decimal totalHour { get; set; }
+    }
+
 
 
 

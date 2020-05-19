@@ -329,8 +329,24 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         [Display(Name = "員工代號")]
         public string EmpID { get; set; }
 
+        [JsonIgnore]
         [Display(Name = "工作日")]
-        public string WorkingDate { get; set; }
+        public DateTime WorkingDate { get; set; }
+
+
+        [Display(Name = "工作日")]
+        [JsonPropertyName("workDate")]
+        public string WorkDateString
+        {
+            get
+            {
+                return WorkingDate.ToString("yyyy-MM-dd");
+            }
+            set
+            {
+
+            }
+        }
 
         [Display(Name = "填報工作日資料代碼")]
         public string RowUnid { get; set; }

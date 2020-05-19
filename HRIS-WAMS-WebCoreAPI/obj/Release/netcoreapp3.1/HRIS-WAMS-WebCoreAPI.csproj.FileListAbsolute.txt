@@ -153,4 +153,3 @@ C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Release\
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Release\netcoreapp3.1\NLog.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Release\netcoreapp3.1\NLog.Extensions.Logging.dll
 C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\bin\Release\netcoreapp3.1\NLog.Web.AspNetCore.dll
-C:\[Project]\工時系統\HRIS-WAMS-WebCoreAPI\HRIS-WAMS-WebCoreAPI\obj\Release\netcoreapp3.1\HRIS-WAMS-WebCoreAPI.csprojAssemblyReference.cache

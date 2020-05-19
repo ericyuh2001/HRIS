@@ -12,7 +12,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     public class HrisDbContext : DbContext
     {
 
-        #region "SP usage"
+        #region "SP usage for Duty"
         // 首頁待填報列表
         public virtual DbSet<AlterbyEmpIDEntity> AlterbyEmpIDEntitys { get; set; }
 
@@ -51,12 +51,25 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-        #region "Job"
+        #region "SP usage for Job"
         // =============================================================================
         // 員工單日可填報項目
         public virtual DbSet<WorkingDateJobCodebyEmpIDEntity> WorkingDateJobCodebyEmpIDEntitys { get; set; }
 
         #endregion
+
+
+
+        #region "SP usage for Sign"
+        //批核工時-待批月曆及單日批核總計狀態
+        public virtual DbSet<WaitApproveDayStaticEntity> WaitApproveDayStaticEntitys { get; set; }
+
+        // 主管週間工時待批列表
+        public virtual DbSet<WaitApproveDetailEntity> WaitApproveDetailEntitys { get; set; }
+        #endregion
+
+
+
 
 
 
@@ -74,6 +87,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         }
 
 
+
         /// <summary>
         /// 
         /// </summary>
@@ -83,7 +97,6 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         /// </remarks>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Data Source=T450S\MSSQLSERVER2012;Initial Catalog=HRIS;Integrated Security=True;Persist Security Info=True");
             //optionsBuilder.UseSqlServer(@"Data Source=10.16.15.10;Initial Catalog=HRIS;User ID=WAMSU;Password=P@ss1234;");
             //optionsBuilder.UseSqlServer(@"Data Source=10.160.35.172;Initial Catalog=HRM;User ID=HRIS_WHSU;Password=1qaz@WSX3edc");
             optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-J342AH8\SQLEXPRESS;Initial Catalog=HRIS;User ID=HRIS_WHSU;Password=1qaz@WSX3edc");
@@ -91,8 +104,12 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         }
 
         
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            // Duty start======================================================================
             // 首頁待填報列表
             modelBuilder.Entity<AlterbyEmpIDEntity>(entity =>
             {
@@ -131,15 +148,11 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             
 
 
-            //modelBuilder.Entity<EmpWorkingHoursDetailEntity>(entity =>
-            //{
-            //    entity.HasKey(e => e.RowUnid);
-            //});
-
             // 員工萬年曆狀態列表
             modelBuilder.Entity<WorkingDateEntity>(entity =>
             {
                 entity.HasKey(e => e.EmpID);
+                entity.Ignore(e => e.WorkDateString);
             });
 
 
@@ -162,13 +175,34 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             });
 
 
-
-            // =============================================================
             // 員工單日可填報項目
             modelBuilder.Entity<WorkingDateJobCodebyEmpIDEntity>(entity =>
             {
                 entity.HasKey(e => e.JobCode);
             });
+            // Duty end======================================================================
+
+
+
+
+
+
+            // Sign start======================================================================
+            // 批核工時-待批月曆及單日批核總計狀態
+            modelBuilder.Entity<WaitApproveDayStaticEntity>(entity =>
+            {
+                entity.HasKey(e => e.FlowID);
+                entity.Ignore(e => e.WorkDateString);
+            });
+
+            modelBuilder.Entity<WaitApproveDetailEntity>(entity =>
+            {
+                entity.HasKey(e => e.FlowID);
+            });
+            // Sign end======================================================================
+
+
+
 
 
 
