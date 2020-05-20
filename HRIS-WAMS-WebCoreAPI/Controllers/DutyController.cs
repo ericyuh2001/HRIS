@@ -606,14 +606,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             // 取得資料 ==========================================================
             string sSQL = "EXEC [whs].[usp_GetWorkingDate] {0}, {1}, {2}";
             var MyHrisDB = new HrisDbContext();
-            var WorkingDateList =
-                MyHrisDB.WorkingDateEntitys.FromSqlRaw(sSQL, EmpID, StartDate, EndDate)
-                    ;
-            //var WorkingDateList =
-            //    from r in MyHrisDB.WorkingDateEntitys.FromSqlRaw(sSQL, EmpID, StartDate, EndDate)
-            //    select r;
+            var WorkingDateList = MyHrisDB.WorkingDateEntitys.FromSqlRaw(sSQL, EmpID, StartDate, EndDate);
 
-            //var sql = SqlContextHelper.ToSql(WorkingDateList);
             return WorkingDateList;
         }
 
