@@ -75,6 +75,12 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
         #region "Table"
         public virtual DbSet<WorkingHoursEntity> TB_WorkingHours { get; set; }
+
+        public virtual DbSet<ProcessStatusEntity> TB_ProcessStatusEntitys { get; set; }
+
+        public virtual DbSet<ProcessStatusDetailEntity> TB_ProcessStatusDetailEntitys { get; set; }
+
+
         #endregion 
 
 
@@ -151,8 +157,9 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             // 員工萬年曆狀態列表
             modelBuilder.Entity<WorkingDateEntity>(entity =>
             {
-                entity.HasKey(e => e.EmpID);
+                entity.HasKey(e => e.WorkingDate);
                 entity.Ignore(e => e.WorkDateString);
+                //entity.Property(e => e.WorkingDate).HasConversion<DateTime>();
             });
 
 
@@ -207,12 +214,26 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
-            // Table based
+            // Table based start=================================================================
             modelBuilder.Entity<WorkingHoursEntity>(entity =>
             {
                 entity.HasKey(e => e.RowUnid);
                 entity.ToTable("WorkingHours","whs");
             });
+
+            modelBuilder.Entity<ProcessStatusEntity>(entity =>
+            {
+                entity.HasKey(e => e.FlowID);
+                entity.ToTable("ProcessStatus", "whs");
+            });
+
+            modelBuilder.Entity<ProcessStatusDetailEntity>(entity =>
+            {
+                entity.HasKey(e => new { e.FlowID, e.RowUnid });
+                entity.ToTable("ProcessStatusDetail", "whs");
+            });
+            // Table based end=================================================================
+
 
             base.OnModelCreating(modelBuilder);
         }

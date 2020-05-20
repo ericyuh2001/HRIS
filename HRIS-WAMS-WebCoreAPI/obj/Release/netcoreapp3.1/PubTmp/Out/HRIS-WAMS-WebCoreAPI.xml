@@ -657,6 +657,120 @@
             <response code="201">代碼201說明描述</response>
             <response code="400">代碼401說明描述</response>          
         </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.GetGetApplicationDetail(System.String)">
+            <summary>
+            主管瀏覽單筆申請待批案件
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/sign/FlowID/1020200413001997001/GetApplicationDetail
+                {
+                    "home":
+                    {
+                        "empName":"彭政閔"
+                    },
+                    "workdateList":
+                    [
+                        {
+                            "rowUnid":"00DALSGJ-56D4-4C65-906B-F5F4AA23A4BF",
+                            "workingDate":"2020-04-06",
+                            "workingHourDetailList":
+                            [
+                                {
+                                     "typeCode":"B01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"GA090054S",
+                                     "jobName":"國立暨南大學資工系教育行政資訊系統研發中心主機弱掃需求   ",
+                                     "workingHours":1,
+                                     "note":"TEST1"
+                                },
+                                {
+                                     "typeCode":"B01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"DA090138S",
+                                     "jobName":"彰化銀行升速2路NG-SDH 100M數據專線     ",
+                                     "workingHours":2,
+                                     "note":"TEST2"
+                                }
+                            ]
+                        },
+                        {
+                            "rowUnid":"00DF544D-6D76-4CAA-666B-B0A0B2B3A4BF",
+                            "workingDate":"2020-04-08",
+                            "workingHourDetailList":
+                            [
+                                {
+                                     "typeCode":"S01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"GA0SSSSSS",
+                                     "jobName":"國立SSSSSSS政資訊系統研發中心主機弱掃需求   ",
+                                     "workingHours":1,
+                                     "note":"TESTSSS1"
+                                },
+                                {
+                                     "typeCode":"S02",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"DA0SSS222S",
+                                     "jobName":"SSS22銀行升速2路NG-SDH 100M數據專線     ",
+                                     "workingHours":2,
+                                     "note":"TESTS2"
+                                }
+                            ]
+                        },
+                        {
+                            "rowUnid":"00A05C2D-5DS4-4C65-556B-B54S4S5622BF",
+                            "workingDate":"2020-04-09",
+                            "workingHourDetailList":
+                            [
+                                {
+                                     "typeCode":"S01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"GA0GGG11",
+                                     "jobName":"國立GGGGG政資訊系統研發中心主機弱掃需求   ",
+                                     "workingHours":1,
+                                     "note":"TESTGGGG1"
+                                },
+                                {
+                                     "typeCode":"S02",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"DA0GGG22",
+                                     "jobName":"GGGG22銀行升速2路NG-SDH 100M數據專線     ",
+                                     "workingHours":2,
+                                     "note":"TESTG2"
+                                }
+                            ]
+                        },
+                        {
+                            "rowUnid":"00D5252D-66D4-4ASD-333B-B0A498S5S4BF",
+                            "workingDate":"2020-04-10",
+                            "workingHourDetailList":
+                            [
+                                {
+                                     "typeCode":"S01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"GA0HHH1",
+                                     "jobName":"國立HHHHHH政資訊系統研發中心主機弱掃需求   ",
+                                     "workingHours":1,
+                                     "note":"TESTHHH1"
+                                },
+                                {
+                                     "typeCode":"S02",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"DA0HHHH2",
+                                     "jobName":"HHH22銀行升速2路NG-SDH 100M數據專線     ",
+                                     "workingHours":2,
+                                     "note":"TESTH2"
+                                }
+                            ]
+                        }
+                    ]
+                }
+                </h2></pre>
+            </remarks>
+            <param name="FlowID" >簽核申請案件代碼</param>
+            <returns>傳回待批之申請案件明細內容，包含周間列表資訊</returns>
+        </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Models.HrisDbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
             <summary>
             

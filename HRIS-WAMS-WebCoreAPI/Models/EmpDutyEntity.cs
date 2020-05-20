@@ -326,12 +326,25 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 員工萬年曆狀態列表
     public class WorkingDateEntity
     {
+        DateTime m_WorkingDate;
+
         [Display(Name = "員工代號")]
         public string EmpID { get; set; }
 
+        [Key]
         [JsonIgnore]
         [Display(Name = "工作日")]
-        public DateTime WorkingDate { get; set; }
+        public DateTime WorkingDate
+        {
+            get
+            {
+                return m_WorkingDate;
+            }
+            set
+            {
+                m_WorkingDate = value;
+            }
+        }
 
 
         [Display(Name = "工作日")]
@@ -340,11 +353,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         {
             get
             {
-                return WorkingDate.ToString("yyyy-MM-dd");
-            }
-            set
-            {
-
+                return m_WorkingDate.ToString("yyyy-MM-dd");
             }
         }
 
