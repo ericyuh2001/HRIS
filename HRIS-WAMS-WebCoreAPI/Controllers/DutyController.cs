@@ -43,8 +43,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     </h2></pre>
         /// </remarks>
         /// <returns></returns>
-        /// <response code="201">代碼201說明描述</response>
-        /// <response code="400">代碼401說明描述</response>     
+        /// <response code="200">操作完成</response>
+        /// <response code="400">內部錯誤</response>     
+        /// <response code="404">參數錯誤</response>     
         [HttpDelete]
         public IActionResult  DeleteWorkingHoursDetail([FromBody]DeleteWorkingHoursDetailHandleEntity empWorkingHoursDetailHandleInfo)
         {
@@ -60,7 +61,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
             if (RowUnid == string.Empty || TypeCode == string.Empty || JobCode == string.Empty)
             {
-                return BadRequest();
+                return NotFound();
             }
 
 
@@ -77,7 +78,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             }
             catch
             {
-                return NotFound();
+                return BadRequest();
             }
 
 
@@ -714,8 +715,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     </h2></pre>
         /// </remarks>
         /// <returns>傳回建檔結果</returns>
-        /// <response code="201">代碼201說明描述</response>
-        /// <response code="400">代碼401說明描述</response>          
+        /// <response code="200">操作完成</response>
+        /// <response code="400">內部錯誤</response>          
         [HttpPost]
         public async Task<ActionResult<EmpLeavebyWorkDateEntity>> InsertWorkingHoursDetail([FromBody]InsertWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
@@ -804,8 +805,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     </h2></pre>
         /// </remarks>
         /// <returns></returns>
-        /// <response code="201">代碼201說明描述</response>
-        /// <response code="400">代碼401說明描述</response>     
+        /// <response code="200">操作完成</response>
+        /// <response code="400">內部錯誤</response>     
         [HttpPut]
         public async Task<ActionResult<UpdateWorkingHoursDetailEntity>> UpdateWorkingHoursDetail([FromBody]UpdateWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
@@ -847,7 +848,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
 
-            return NoContent();
+            return Ok();
 
         }
 

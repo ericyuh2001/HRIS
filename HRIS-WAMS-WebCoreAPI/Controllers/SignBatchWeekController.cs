@@ -33,9 +33,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// </remarks>
         /// <returns></returns>
         [HttpPost()]
-        public void SignBatchApprovalByDateRange([FromBody] BatchSignApprovalEntity BatchSignApprovalInfo)
+        public IActionResult SignBatchApprovalByDateRange([FromBody] BatchSignApprovalEntity BatchSignApprovalInfo)
         {
-
+            return Ok();
         }
 
     }

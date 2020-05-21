@@ -41,9 +41,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// </remarks>
         /// <returns></returns>
         [HttpPost()]
-        public void SignBatchApproval([FromBody] BatchSignApprovalEntity BatchSignApprovalInfo)
+        public IActionResult SignBatchApproval([FromBody] BatchSignApprovalEntity BatchSignApprovalInfo)
         {
-
+            return Ok();
         }
 
 

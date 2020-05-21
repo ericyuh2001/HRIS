@@ -40,11 +40,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// </remarks>
         /// <param name="EmpID" >員工編號</param>
         /// <returns>傳回待批表單列表資料</returns>
-        /// <response code="201">代碼201說明描述</response>
-        /// <response code="400">代碼401說明描述</response>          
         [HttpGet("EmpID/{EmpID}/GetWaitApprove_WHS")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IEnumerable<WaitApproveEntity> GetWaitApprove_WHS(string EmpID)
         {
 
@@ -121,12 +117,11 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// </remarks>
         /// <returns></returns>
         [HttpPost]
-        public void SignByFlowID([FromBody]SingleSignActionBody SingleSignActionInfo)
+        public IActionResult SignByFlowID([FromBody]SingleSignActionBody SingleSignActionInfo)
         {
             
             string IsApproval = SingleSignActionInfo.IsApproval;
-
-            
+            return Ok();            
         }
 
 

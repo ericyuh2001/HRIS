@@ -36,6 +36,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 批核工時-待批月曆及單日批核總計狀態
     public class WaitApproveDayStaticEntity
     {
+        [Key]
         [Display(Name = "簽核表單編號")]
         public string FlowID { get; set; }
 
@@ -43,7 +44,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         [Display(Name = "簽核狀態")]
         public string IsFinish { get; set; }
 
-
+        [Key]
         [JsonIgnore]
         [Display(Name = "工作日")]
         public DateTime WorkingDate { get; set; }

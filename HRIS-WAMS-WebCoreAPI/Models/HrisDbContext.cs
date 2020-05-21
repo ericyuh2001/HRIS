@@ -198,7 +198,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             // 批核工時-待批月曆及單日批核總計狀態
             modelBuilder.Entity<WaitApproveDayStaticEntity>(entity =>
             {
-                entity.HasKey(e => e.FlowID);
+                entity.HasKey(e => new { e.FlowID, e.WorkingDate });
                 entity.Ignore(e => e.WorkDateString);
             });
 

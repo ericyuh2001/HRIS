@@ -39,8 +39,9 @@
                 </h2></pre>
             </remarks>
             <returns></returns>
-            <response code="201">代碼201說明描述</response>
-            <response code="400">代碼401說明描述</response>     
+            <response code="200">操作完成</response>
+            <response code="400">內部錯誤</response>     
+            <response code="404">參數錯誤</response>     
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetEmpLeaveWorkDates(System.String,System.String)">
             <summary>
@@ -243,8 +244,8 @@
                 </h2></pre>
             </remarks>
             <returns>傳回建檔結果</returns>
-            <response code="201">代碼201說明描述</response>
-            <response code="400">代碼401說明描述</response>          
+            <response code="200">操作完成</response>
+            <response code="400">內部錯誤</response>          
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.UpdateWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.UpdateWorkingHoursDetailEntity)">
             <summary>
@@ -276,8 +277,8 @@
                 </h2></pre>
             </remarks>
             <returns></returns>
-            <response code="201">代碼201說明描述</response>
-            <response code="400">代碼401說明描述</response>     
+            <response code="200">操作完成</response>
+            <response code="400">內部錯誤</response>     
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetWorkingHoursRowUnidByWorkingDate(System.String,System.DateTime)">
             <summary>
@@ -454,8 +455,6 @@
             </remarks>
             <param name="EmpID" >員工編號</param>
             <returns>傳回待批表單列表資料</returns>
-            <response code="201">代碼201說明描述</response>
-            <response code="400">代碼401說明描述</response>          
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.SignByFlowID(HRIS_WAMS_WebCoreAPI.Models.SingleSignActionBody)">
             <summary>
