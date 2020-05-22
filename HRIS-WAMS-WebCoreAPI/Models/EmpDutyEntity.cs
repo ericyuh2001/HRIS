@@ -219,10 +219,10 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 員工單日工時紀錄列表
     public class WorkingDateDetailListEntity
     {
+        [Key]
         [Required]
         [Display(Name = "工時填報資料代碼")]
         public string RowUnid { get; set; }
-
 
         [Display(Name = "工時類別代碼")]
         public string TypeCode { get; set; }
@@ -231,7 +231,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         [Display(Name = "工時類別名稱")]
         public string TypeName { get; set; }
 
-
+        [Key]
         [Display(Name = "Job代碼")]
         public string JobCode { get; set; }
 

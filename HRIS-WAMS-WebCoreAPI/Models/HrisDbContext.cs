@@ -166,7 +166,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             // 員工單日工時紀錄列表
             modelBuilder.Entity<WorkingDateDetailListEntity>(entity =>
             {
-                entity.HasKey(e => e.RowUnid);
+                entity.HasKey(e => new { e.RowUnid, e.JobCode });
             });
 
             // 員工單日可填報項目
