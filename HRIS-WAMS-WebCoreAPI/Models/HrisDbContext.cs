@@ -23,6 +23,9 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public virtual DbSet<EmpWorkdateEntity> EmpWorkdateEntitys { get; set; }
 
 
+        // 輸入工時明細：回傳訊息
+        public virtual DbSet<InsertWorkingHoursDetailReturnEntity> InsertWorkingHoursDetailReturnEntitys { get; set; }
+
 
 
         // 抓取員工首頁資訊
@@ -43,6 +46,11 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public virtual DbSet<WorkingHoursDetailEntity> WorkingHoursDetailEntitys { get; set; }
 
         public virtual DbSet<EmpLeavebyWorkDateEntity> EmpWorkingHoursDetailEntitys { get; set; }
+
+        // 更新填報工時：回傳訊息
+        public virtual DbSet<UpdateWorkingHoursDetailReturnEntity> UpdateWorkingHoursDetailReturnEntitys { get; set; }
+
+
 
         // 抓取待批表單列表
         public virtual DbSet<WaitApproveEntity> WaitApproveEntitys { get; set; }
@@ -159,7 +167,6 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             {
                 entity.HasKey(e => e.WorkingDate);
                 entity.Ignore(e => e.WorkDateString);
-                //entity.Property(e => e.WorkingDate).HasConversion<DateTime>();
             });
 
 
@@ -186,6 +193,21 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             modelBuilder.Entity<WorkingDateJobCodebyEmpIDEntity>(entity =>
             {
                 entity.HasKey(e => e.JobCode);
+            });
+
+
+
+            // 輸入工時明細：回傳訊息
+            modelBuilder.Entity<InsertWorkingHoursDetailReturnEntity>(entity =>
+            {
+                entity.HasKey(e => e.message);
+            });
+
+
+            // 更新工時明細：回傳訊息
+            modelBuilder.Entity<UpdateWorkingHoursDetailReturnEntity>(entity =>
+            {
+                entity.HasKey(e => e.message);
             });
             // Duty end======================================================================
 

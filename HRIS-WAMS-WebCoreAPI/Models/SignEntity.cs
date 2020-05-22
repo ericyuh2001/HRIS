@@ -209,5 +209,31 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
+    // 單筆簽核
+    public class UpdatedProcessStatusBySignEntity
+    {
+        public string FlowID { get; set; }
+
+        public string SignID { get; set; }
+
+        public string SingRemark { get; set; }
+
+        public string IsFinish { get; set; }
+
+        public string UpdatedBy { get; set; }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

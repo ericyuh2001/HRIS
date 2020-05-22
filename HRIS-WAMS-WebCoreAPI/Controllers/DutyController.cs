@@ -713,13 +713,30 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "CreatedBy":"260169"
         ///     }
         ///     </h2></pre>
+        ///     
+        /// 回傳範例
+        ///    範例1：送出完成
+        ///    {
+        ///         "message": "送出完成!!"
+        ///     }
+        ///     
+        ///     範例2：不可超出應填時數
+        ///     {
+        ///         "message": "不可超出應填時數"
+        ///     }
+        ///     
+        ///     範例3：本日已有相同資料
+        ///     {
+        ///         "message": "本日已有相同資料"
+        ///     }
         /// </remarks>
         /// <returns>傳回建檔結果</returns>
         /// <response code="200">操作完成</response>
         /// <response code="400">內部錯誤</response>          
         [HttpPost]
-        public async Task<ActionResult<EmpLeavebyWorkDateEntity>> InsertWorkingHoursDetail([FromBody]InsertWorkingHoursDetailEntity empWorkingHoursDetailEntity)
+        public ActionResult<InsertWorkingHoursDetailReturnEntity> InsertWorkingHoursDetail([FromBody]InsertWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
+            InsertWorkingHoursDetailReturnEntity retInsertWorkingHoursDetailReturnInfo= null;
 
             string RowUnid = empWorkingHoursDetailEntity.RowUnid;
             string TypeCode = empWorkingHoursDetailEntity.TypeCode;
@@ -747,17 +764,24 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
                         @CreatedBy = {5}";
             var MyHrisDB = new HrisDbContext();
 
+
             try
             {
-                MyHrisDB.Database.ExecuteSqlRaw(sSQL, param);
+                var returnMessageList =  
+                    MyHrisDB.InsertWorkingHoursDetailReturnEntitys.FromSqlRaw(sSQL, param).ToList();
+
+                if (returnMessageList != null && returnMessageList.Count > 0)
+                    retInsertWorkingHoursDetailReturnInfo = returnMessageList[0];
             }
             catch
             {
-                return BadRequest();
+                return BadRequest(retInsertWorkingHoursDetailReturnInfo);
             }
 
 
-            return Ok();
+           
+
+            return Ok(retInsertWorkingHoursDetailReturnInfo);
         }
 
 
@@ -803,13 +827,25 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "CreatedBy":"Tester"
         ///     }
         ///     </h2></pre>
+        ///     
+        /// 回傳範例
+        ///     範例1：更新完成
+        ///     {
+        ///         "message": "送出完成!!"
+        ///     }
+        ///     
+        ///     範例2：不可超出應填時數
+        ///     {
+        ///         "message": "不可超出應填時數"
+        ///     }
         /// </remarks>
         /// <returns></returns>
         /// <response code="200">操作完成</response>
         /// <response code="400">內部錯誤</response>     
         [HttpPut]
-        public async Task<ActionResult<UpdateWorkingHoursDetailEntity>> UpdateWorkingHoursDetail([FromBody]UpdateWorkingHoursDetailEntity empWorkingHoursDetailEntity)
+        public  ActionResult<UpdateWorkingHoursDetailReturnEntity> UpdateWorkingHoursDetail([FromBody]UpdateWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
+            UpdateWorkingHoursDetailReturnEntity retUpdateWorkingHoursDetailReturnInfo = null;
 
             string RowUnid = empWorkingHoursDetailEntity.RowUnid;
             string TypeCode = empWorkingHoursDetailEntity.TypeCode;
@@ -839,16 +875,22 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
             try
             {
-                MyHrisDB.Database.ExecuteSqlRaw(sSQL, param);
+                var varUpdateWorkingHoursDetailReturn =
+                    MyHrisDB.UpdateWorkingHoursDetailReturnEntitys.FromSqlRaw(sSQL,param)
+                    .ToList();
+
+                if (varUpdateWorkingHoursDetailReturn != null && varUpdateWorkingHoursDetailReturn.Count > 0)
+                    retUpdateWorkingHoursDetailReturnInfo = varUpdateWorkingHoursDetailReturn[0];
+
             }
             catch
             {
-                return BadRequest();
+                return BadRequest(retUpdateWorkingHoursDetailReturnInfo);
             }
 
 
 
-            return Ok();
+            return Ok(retUpdateWorkingHoursDetailReturnInfo);
 
         }
 

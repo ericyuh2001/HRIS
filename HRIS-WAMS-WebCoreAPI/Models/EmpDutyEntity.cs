@@ -399,9 +399,22 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
 
 
+    // 輸入工時明細：回傳訊息
+    public class InsertWorkingHoursDetailReturnEntity
+    {
+        [Key]
+        public string message { get; set; }
+    }
 
 
 
+    // 更新填報工時：回傳訊息
+    public class UpdateWorkingHoursDetailReturnEntity
+    {
+        [Key]
+        [Display(Name = "回傳訊息")]
+        public string message { get; set; }
+    }
 
 
 

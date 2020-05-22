@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HRIS_WAMS_WebCoreAPI.Models;
-
-
-
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace HRIS_WAMS_WebCoreAPI.Controllers
 {
@@ -487,11 +485,13 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         public ContentResult GetGetApplicationDetail(string FlowID)
         {
 
-            string sSQL = "EXEC [whs].[usp_GetAlterbyEmpID] {0}";
             var MyHrisDB = new HrisDbContext();
 
-            //List<ProcessStatusEntity> ProcessStatusListInfo = MyHrisDB.TB_ProcessStatusEntitys
+            //var ProcessStatusListInfo = MyHrisDB.TB_ProcessStatusEntitys
             //    .Where(e => e.FlowID == FlowID).ToList();
+            var ProcessStatusListInfo = MyHrisDB.TB_ProcessStatusEntitys;
+            var sql = SqlContextHelper.ToSql(ProcessStatusListInfo);
+
 
             //List<ProcessStatusDetailEntity> ProcessStatusDetailListInfo = MyHrisDB.TB_ProcessStatusDetailEntitys
             //    .Where(e => e.FlowID == FlowID).ToList();
@@ -516,7 +516,85 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
 
-       
+
+
+
+
+
+
+
+        /// <summary>
+        /// 修改填報資料
+        /// </summary>
+        /// <remarks>
+        /// <pre><h2>
+        /// 回傳範例
+        ///     PUT /api/v1/whs/sign
+        ///     Sample 1
+        ///     {
+        ///         "FlowID":"1020200421001997001",
+        ///         "SignID":"002688",
+        ///         "SingRemark":"簽核測試_簽准_test001",
+        ///         "IsFinish":"1",
+        ///         "UpdatedBy":"002688",
+        ///     }
+        ///     </h2></pre>
+        /// </remarks>
+        /// <returns></returns>
+        /// <response code="200">操作完成</response>
+        /// <response code="400">內部錯誤</response>
+        /// <response code="404">參數錯誤</response>
+        [HttpPut]
+        public IActionResult UpdatedProcessStatusBySign([FromBody] UpdatedProcessStatusBySignEntity UpdatedProcessStatusInfo)
+        {
+            string FlowID = UpdatedProcessStatusInfo.FlowID.Trim();
+            string SignID = UpdatedProcessStatusInfo.SignID.Trim();
+            string SingRemark = UpdatedProcessStatusInfo.SingRemark.Trim();
+            string IsFinish = UpdatedProcessStatusInfo.IsFinish.Trim();
+            string UpdatedBy = UpdatedProcessStatusInfo.UpdatedBy.Trim();
+
+
+            if (FlowID == string.Empty 
+                || SignID == string.Empty 
+                || IsFinish == string.Empty
+                || UpdatedBy == string.Empty)
+            {
+                return NotFound();
+            }
+
+
+            string[] param = new[] {
+                FlowID,
+                SignID,
+                SingRemark,
+                IsFinish,
+                UpdatedBy
+            };
+
+            string sSQL = @"EXEC [whs].[usp_UpdatedProcessStatusBySign] 
+                        @FlowID = {0}, 
+                        @SignID = {1}, 
+                        @SingRemark = {2}, 
+                        @IsFinish = {3}, 
+                        @UpdatedBy = {4}";
+            var MyHrisDB = new HrisDbContext();
+
+            try
+            {
+                MyHrisDB.Database.ExecuteSqlRaw(sSQL, param);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+                //return NoContent();
+            }
+
+
+
+            return Ok();
+
+        }
+
 
 
 
