@@ -732,7 +732,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// </remarks>
         /// <returns>傳回建檔結果</returns>
         /// <response code="200">操作完成</response>
-        /// <response code="400">內部錯誤</response>          
+        /// <response code="500">內部錯誤</response>          
         [HttpPost]
         public ActionResult<InsertWorkingHoursDetailReturnEntity> InsertWorkingHoursDetail([FromBody]InsertWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
@@ -775,7 +775,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             }
             catch
             {
-                return BadRequest(retInsertWorkingHoursDetailReturnInfo);
+                //return internalser (retInsertWorkingHoursDetailReturnInfo);
+                return StatusCode(500);
             }
 
 
@@ -841,7 +842,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// </remarks>
         /// <returns></returns>
         /// <response code="200">操作完成</response>
-        /// <response code="400">內部錯誤</response>     
+        /// <response code="500">內部錯誤</response>     
         [HttpPut]
         public  ActionResult<UpdateWorkingHoursDetailReturnEntity> UpdateWorkingHoursDetail([FromBody]UpdateWorkingHoursDetailEntity empWorkingHoursDetailEntity)
         {
@@ -885,7 +886,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             }
             catch
             {
-                return BadRequest(retUpdateWorkingHoursDetailReturnInfo);
+                //return BadRequest(retUpdateWorkingHoursDetailReturnInfo);
+                return StatusCode(500);
             }
 
 

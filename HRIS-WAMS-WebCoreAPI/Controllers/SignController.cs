@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HRIS_WAMS_WebCoreAPI.Models;
-using Microsoft.AspNetCore.Diagnostics;
+//using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.Data.SqlClient.Server;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
+using System.Net;
 
 namespace HRIS_WAMS_WebCoreAPI.Controllers
 {
@@ -272,44 +275,16 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     GET /api/v1/whs/sign/EmpID/726124/StartDate/20200301/EndDate/20200331/GetWaitApproveDayStatic
         ///     [
         ///     {
-        ///         "workingDate":"2020-04-01",
-        ///         "waitApproveItemCount":0,
-        ///         "isFinish":"已批核"
+        ///         "flowID": "1020200525002688001                 ",
+        ///         "isFinish": "0",
+        ///         "workDate": "2020-05-04",
+        ///         "waitApproveItemCount": 1
         ///     },
         ///     {
-        ///         "workingDate":"2020-04-02",
-        ///         "waitApproveItemCount":0,
-        ///         "isFinish":"已批核"
-        ///     },
-        ///     {
-        ///         "workingDate":"2020-04-03",
-        ///         "waitApproveItemCount":0,
-        ///         "isFinish":"已批核"
-        ///     },
-        ///     {
-        ///         "workingDate":"2020-04-06",
-        ///         "waitApproveItemCount":10,
-        ///         "isFinish":"未批核"
-        ///     },
-        ///     {
-        ///         "workingDate":"2020-04-08",
-        ///         "waitApproveItemCount":30,
-        ///         "isFinish":"未批核"
-        ///     },
-        ///     {
-        ///         "workingDate":"2020-04-09",
-        ///         "waitApproveItemCount":40,
-        ///         "isFinish":"未批核"
-        ///     },
-        ///     {
-        ///         "workingDate":"2020-04-10",
-        ///         "waitApproveItemCount":20,
-        ///         "isFinish":"未批核"
-        ///     },
-        ///     {
-        ///         "workingDate":"2020-04-13",
-        ///         "waitApproveItemCount":5,
-        ///         "isFinish":"未批核"
+        ///         "flowID": "1020200525002688001                 ",
+        ///         "isFinish": "0",
+        ///         "workDate": "2020-05-06",
+        ///         "waitApproveItemCount": 1
         ///     }
         ///     ]
         ///     </h2></pre>
@@ -487,11 +462,40 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
             var MyHrisDB = new HrisDbContext();
 
+
+            DateTime ddd = DateTime.Parse("2020/03/27");
+            var WorkingHoursQuerable = MyHrisDB.TB_WorkingHours
+                .Where(b => b.EmpID == "072737" && b.WorkingDate == ddd);
+            if (WorkingHoursQuerable != null && WorkingHoursQuerable.Count() > 0)
+            {
+                WorkingHoursEntity WorkingHoursInfo = WorkingHoursQuerable.First();
+                string RowUnid = WorkingHoursInfo.RowUnid;
+            }
+
+
+            var bb = MyHrisDB.TB_ProcessStatusEntitys
+                     .Where(b => b.FlowID == "1020200525002688001");
+            if (bb != null & bb.Count() > 0)
+            {
+                var hhh = bb.First();
+                string kk = hhh.FlowID;
+
+                foreach (ProcessStatusEntity fff in bb)
+                {
+                    string test = fff.FlowID;
+                }
+            }
+
+
             //var ProcessStatusListInfo = MyHrisDB.TB_ProcessStatusEntitys
             //    .Where(e => e.FlowID == FlowID).ToList();
-            var ProcessStatusListInfo = MyHrisDB.TB_ProcessStatusEntitys;
-            var sql = SqlContextHelper.ToSql(ProcessStatusListInfo);
+            //var ProcessStatusListInfo = MyHrisDB.TB_ProcessStatusEntitys;
+            //var sql = SqlContextHelper.ToSql(ProcessStatusListInfo);
 
+            //foreach (ProcessStatusEntity aa in ProcessStatusListInfo)
+            //{
+            //    var aaa = aa.FlowID;
+            //}
 
             //List<ProcessStatusDetailEntity> ProcessStatusDetailListInfo = MyHrisDB.TB_ProcessStatusDetailEntitys
             //    .Where(e => e.FlowID == FlowID).ToList();
@@ -524,7 +528,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
         /// <summary>
-        /// 修改填報資料
+        /// 主管單筆批核
         /// </summary>
         /// <remarks>
         /// <pre><h2>
@@ -539,6 +543,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "UpdatedBy":"002688",
         ///     }
         ///     </h2></pre>
+        ///     
+        ///     IsFinish =1 簽准
+        ///     IsFinish = 3 簽退
         /// </remarks>
         /// <returns></returns>
         /// <response code="200">操作完成</response>

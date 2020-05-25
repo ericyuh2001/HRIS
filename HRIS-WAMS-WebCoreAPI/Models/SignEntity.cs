@@ -175,7 +175,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
     public class BatchSignApprovalEntity
     {
-      
+        [Key]
         [Display(Name = "簽核主管員工編號")]
         public string SignID { get; set; }
 
@@ -183,26 +183,53 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public string IsApproval { get; set; }
 
 
-        [Display(Name = "核准筆數")]
-        public int ApprovedItemCount { get; set; }
+        //[Display(Name = "核准筆數")]
+        //public int ApprovedItemCount { get; set; }
 
 
         [Display(Name = "批次核准明細")]
-        public SignBatchDetailEntity SignBatchDetailInfo { get; set; }
+        public List<SignBatchDetailEntity> SignBatchDetailList { get; set; }
     }
 
 
 
 
+    // 主管批次核准（單週全部核准）
+    public class BatchSignApprovalByDateRangeEntity
+    {
+        [Key]
+        [Display(Name = "簽核主管員工編號")]
+        public string SignID { get; set; }
+
+        [Display(Name = "是否核准")]
+        public string IsApproval { get; set; }
+
+
+        [Display(Name = "起始日期")]
+        public string StartDate { get; set; }
+
+        [Display(Name = "起始日期")]
+        public string EndDate { get; set; }
+
+
+        [Display(Name = "合計筆數")]
+        public int WaitApproveItemCount { get; set; }
+    }
+
+
+
+
+    // 批次核准明細
     public class SignBatchDetailEntity
     {
+        [Key]
         [Required]
         [Display(Name = "簽核表單編號")]
         public string FlowID { get; set; }
 
         [Required]
         [Display(Name = "已填報工時")]
-        public string WorkingHours { get; set; }
+        public int WorkingHours { get; set; }
 
     }
 

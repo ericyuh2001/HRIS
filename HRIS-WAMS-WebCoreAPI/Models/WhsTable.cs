@@ -63,43 +63,44 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     public class ProcessStatusEntity
     {
         [Key]
+        [Required]
         public string FlowID { get; set; }
 
         public DateTime ApplyDate { get; set; }
 
+        public string ApplyID { get; set; }
+
         public string DeptMergeCode { get; set; }
 
-        [AllowNull]
         public DateTime WorkingDateStart { get; set; }
 
-        [AllowNull]
         public DateTime WorkingDateEnd { get; set; }
         public int WorkingDateItemCount { get; set; }
-        public string  IsFinish { get; set; }
+        public string IsFinish { get; set; }
         public string IsDeleted { get; set; }
 
         [AllowNull]
         public string SignID { get; set; }
 
-        [AllowNull]
-        public DateTime SignDate { get; set; }
+        //[AllowNull]
+        //public DateTime? SignDate { get; set; }
 
-        [AllowNull]
-        public string SingRemark { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
+        //[AllowNull]
+        //public string SingRemark { get; set; }
+        //public string CreatedBy { get; set; }
+        //public DateTime CreatedDate { get; set; }
 
-        [AllowNull]
-        public string UpdatedBy { get; set; }
+        //[AllowNull]
+        //public string UpdatedBy { get; set; }
 
-        [AllowNull]
-        public DateTime UpdatedDate { get; set; }
+        //[AllowNull]
+        //public DateTime? UpdatedDate { get; set; }
 
-        [AllowNull]
-        public string DeletedBy { get; set; }
+        //[AllowNull]
+        //public string DeletedBy { get; set; }
 
-        [AllowNull]
-        public DateTime DeletedDate { get; set; }
+        //[AllowNull]
+        //public DateTime? DeletedDate { get; set; }
     }
 
 

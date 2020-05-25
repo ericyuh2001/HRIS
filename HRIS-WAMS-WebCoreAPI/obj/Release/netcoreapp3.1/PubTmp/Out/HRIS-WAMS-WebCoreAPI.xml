@@ -20,8 +20,8 @@
             </h2></pre>
             </remarks>
             <returns>傳回</returns>
-            <response code="201">代碼201說明描述</response>
-            <response code="400">代碼401說明描述</response>          
+            <response code="200">操作完成</response>
+            <response code="500">內部錯誤</response>          
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.DeleteWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.DeleteWorkingHoursDetailHandleEntity)">
             <summary>
@@ -261,7 +261,7 @@
             </remarks>
             <returns>傳回建檔結果</returns>
             <response code="200">操作完成</response>
-            <response code="400">內部錯誤</response>          
+            <response code="500">內部錯誤</response>          
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.UpdateWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.UpdateWorkingHoursDetailEntity)">
             <summary>
@@ -305,7 +305,7 @@
             </remarks>
             <returns></returns>
             <response code="200">操作完成</response>
-            <response code="400">內部錯誤</response>     
+            <response code="500">內部錯誤</response>     
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetWorkingHoursRowUnidByWorkingDate(System.String,System.DateTime)">
             <summary>
@@ -440,8 +440,11 @@
             </h2></pre>
             </remarks>
             <returns></returns>
+            <response code="200">操作完成</response>
+            <response code="400">參數錯誤</response>     
+            <response code="500">內部錯誤</response>     
         </member>
-        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignBatchWeekController.SignBatchApprovalByDateRange(HRIS_WAMS_WebCoreAPI.Models.BatchSignApprovalEntity)">
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignBatchWeekController.SignBatchApprovalByDateRange(HRIS_WAMS_WebCoreAPI.Models.BatchSignApprovalByDateRangeEntity)">
             <summary>
             主管批次核准（單週全部核准）
             </summary>
@@ -450,15 +453,18 @@
             傳入範例   
                 POST /api/v1/whs/signBatchWeek 
                 {   
-                    "signID":"692197",
+                    "signID":"029935",
                     "isApproval":"1",
-                    "startDate":"2020-04-05",
-                    "endDate":"2020-04-10",
-                    "waitApproveItemCount":100
+                    "startDate":"2020-05-03",
+                    "endDate":"2020-05-09",
+                    "waitApproveItemCount":1
                 }
             </h2></pre>
             </remarks>
             <returns></returns>
+            <response code="200">操作完成</response>
+            <response code="400">參數錯誤</response>
+            <response code="500">內部錯誤</response>     
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.GetWaitApprove_WHS(System.String)">
             <summary>
@@ -634,44 +640,16 @@
                 GET /api/v1/whs/sign/EmpID/726124/StartDate/20200301/EndDate/20200331/GetWaitApproveDayStatic
                 [
                 {
-                    "workingDate":"2020-04-01",
-                    "waitApproveItemCount":0,
-                    "isFinish":"已批核"
+                    "flowID": "1020200525002688001                 ",
+                    "isFinish": "0",
+                    "workDate": "2020-05-04",
+                    "waitApproveItemCount": 1
                 },
                 {
-                    "workingDate":"2020-04-02",
-                    "waitApproveItemCount":0,
-                    "isFinish":"已批核"
-                },
-                {
-                    "workingDate":"2020-04-03",
-                    "waitApproveItemCount":0,
-                    "isFinish":"已批核"
-                },
-                {
-                    "workingDate":"2020-04-06",
-                    "waitApproveItemCount":10,
-                    "isFinish":"未批核"
-                },
-                {
-                    "workingDate":"2020-04-08",
-                    "waitApproveItemCount":30,
-                    "isFinish":"未批核"
-                },
-                {
-                    "workingDate":"2020-04-09",
-                    "waitApproveItemCount":40,
-                    "isFinish":"未批核"
-                },
-                {
-                    "workingDate":"2020-04-10",
-                    "waitApproveItemCount":20,
-                    "isFinish":"未批核"
-                },
-                {
-                    "workingDate":"2020-04-13",
-                    "waitApproveItemCount":5,
-                    "isFinish":"未批核"
+                    "flowID": "1020200525002688001                 ",
+                    "isFinish": "0",
+                    "workDate": "2020-05-06",
+                    "waitApproveItemCount": 1
                 }
                 ]
                 </h2></pre>
@@ -799,7 +777,7 @@
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.UpdatedProcessStatusBySign(HRIS_WAMS_WebCoreAPI.Models.UpdatedProcessStatusBySignEntity)">
             <summary>
-            修改填報資料
+            主管單筆批核
             </summary>
             <remarks>
             <pre><h2>
@@ -814,6 +792,9 @@
                     "UpdatedBy":"002688",
                 }
                 </h2></pre>
+                
+                IsFinish =1 簽准
+                IsFinish = 3 簽退
             </remarks>
             <returns></returns>
             <response code="200">操作完成</response>

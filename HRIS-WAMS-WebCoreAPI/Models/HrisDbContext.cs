@@ -246,6 +246,16 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             modelBuilder.Entity<ProcessStatusEntity>(entity =>
             {
                 entity.HasKey(e => e.FlowID);
+                //entity.Property(e => e.WorkingDateStart).IsRequired(false);
+                //entity.Property(e => e.WorkingDateEnd).IsRequired(false);
+                //entity.Property(e => e.SignID).IsRequired(false);
+                //entity.Property(e => e.SignDate).IsRequired(false);
+                //entity.Property(e => e.SingRemark).IsRequired(false);
+                //entity.Property(e => e.UpdatedBy).IsRequired(false);
+                ////entity.Property(e => e.UpdatedDate).IsRequired(false);
+                //entity.Property(e => e.DeletedBy).IsRequired(false);
+                //entity.Property(e => e.DeletedDate).IsRequired(false);
+
                 entity.ToTable("ProcessStatus", "whs");
             });
 
