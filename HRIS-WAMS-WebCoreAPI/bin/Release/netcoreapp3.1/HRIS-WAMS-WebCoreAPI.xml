@@ -1,0 +1,799 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HRIS-WAMS-WebCoreAPI</name>
+    </assembly>
+    <members>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.DeleteWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.DeleteWorkingHoursDetailHandleEntity)">
+            <summary>
+            刪除填報資料
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                DELETE /api/v1/whs/duty
+                {
+                    "RowUnid":"9C821CF6-535F-44D2-96D1-41D61B8BDB1C",
+                    "TypeCode":"B01",
+                    "JobCode":"Bus_83"
+                }
+                </h2></pre>
+            </remarks>
+            <returns></returns>
+            <response code="200">操作完成</response>        
+            <response code="401">參數錯誤</response>
+            <response code="501">內部錯誤</response>     
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetEmpLeaveWorkDates(System.String,System.String)">
+            <summary>
+            工時申請單
+            
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/duty/EmpID/002688/WorkDate/20160223/GetEmpLeavebyWorkDate
+                {
+                    "workDate":
+                     {
+                        "rowUnid":"00A05C2D-56D4-4C65-906B-B0A0B2B3A4BF",
+                        "empID":"309426",
+                        "workingDate":"2020-04-07",
+                        "totalWorkingHours":4.0,
+                        "filledHours":8.0,
+                        "isFinish":"未送出"
+                    },
+                    "weekList":
+                    [
+                        {
+                        "workingDate":"2020-04-06",
+                        "isFinish":"未送出"
+                        },
+                        {
+                        "workingdate":"2020-04-07",
+                        "isFinish":"未送出"
+                        },
+                        {
+                        "workingdate":"2020-04-08",
+                        "isFinish":"已送出"
+                        },
+                        {
+                        "workingdate":"2020-04-09",
+                        "isFinish":"未送出"
+                        },
+                        {
+                        "workingdate":"2020-04-10",
+                        "isFinish":"未送出"
+                        }
+                    ],
+                    "empLeaveList":
+                    [
+                        {
+                        "EmpID": "002688",
+                        "WorkDate": "2016-02-23",
+                        "ApplyHours": 1,
+                        "Reason":"休假",
+                        "type":"非專標案加班",
+                        "IsProject":"N"
+                        },
+                        {
+                        "EmpID": "002688",
+                        "WorkDate": "2016-02-23",
+                        "ApplyHours": 2,
+                        "Reason":"非專標案加班",
+                        "type":"非專標案加班",
+                        "IsProject":"N"
+                        }
+                    ],
+                    "detailList":
+                    [
+                        {
+                        "TypeCode":"B01",
+                        "TypeName":"專標案(建置)",
+                        "JobCode":"GA090054S",
+                        "JobName":"國立暨南大學資工系教育行政資訊系統研發中心主機弱掃需求   ",
+                        "WorkingHours":1,
+                        "Note":"TEST1"
+                        },
+                        {
+                        "TypeCode":"B01",
+                        "TypeName":"專標案(建置)",
+                        "JobCode":"DA090138S",
+                        "JobName":"彰化銀行升速2路NG-SDH 100M數據專線     ",
+                        "WorkingHours":2,
+                        "Note":"TEST2"
+                        }
+                    ]
+                }
+                </h2></pre>
+            </remarks>
+            <param name="EmpID" >員工代號</param>
+            <param name="WorkDateNo">上班日（格式yyyymmmdd）</param>
+            <returns>傳回員工【單日填報統計】、【假單、加班單】、【員工週間申請狀態】、【單日填報工時明細】</returns>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetHomeInfoByEmp(System.String)">
+            <summary>
+            抓取員工首頁資訊，包含首頁待填列表
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/duty/EmpID/692197/GetHomeInfoByEmp
+                {
+                    "home":
+                     {
+                        "EmpID":"692197",
+                        "EmpName":"李蕙芬",
+                        "Sex":"2",
+                        "message":"您目前尚無待辦事項須處理",
+                        "WriteRedPoint":"1",
+                        "SignRedPoint":"1",
+                        "RoleID":"A"
+                    },
+                    "alterList":
+                    [
+                        {
+                        "empID":"848259",
+                        "workingDate":"2020/04/07",
+                        "status:":"未送出"
+                        },
+                        {
+                        "empID":"848259",
+                        "workingDate":"2020/04/08",
+                        "status:":"未送出"
+                        },
+                        {
+                        "empID":"848259",
+                        "workingDate":"2020/04/09",
+                        "status:":"未送出"
+                        }
+                    ],
+                    "waitApproveList":
+                    [
+                        {
+                        "empName":"賴x芬",
+                        "flowID":"1020200413001997001                 ",
+                        "message":"2020/3 W4 工時申報單"
+                        },
+                        {
+                        "empName":"賴x芬",
+                        "flowID":"1020200421001997001                 ",
+                        "message":"2020/4 W3 工時申報單"
+                        },
+                        {
+                        "empName":"王x義",
+                        "flowID":"1020201535001988003                 ",
+                        "message":"2020/4 W3 工時申報單"
+                        }
+                    ]
+                }
+                </h2></pre>
+                Last modified:  2020/05/06
+            </remarks>
+            <param name="EmpID" >員工代號</param>
+            <returns>傳回員工首頁資訊</returns>
+            <response code="201">代碼201說明描述</response>
+            <response code="400">代碼401說明描述</response>          
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetWorkingDate(System.String,System.String,System.String)">
+            <summary>
+            員工萬年曆狀態列表
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/duty/EmpID/373409/StartDate/20200301/EndDate/20200331/GetWorkingDate
+                {
+                   "empID":"373409",
+                   "workingDate":"2020-03-01",
+                   "isFinish":"9"
+                }
+                </h2></pre>
+            </remarks>
+            <param name="EmpID" >員工代號</param>
+            <param name="StartDateNo">傳入日期區間：起始日期</param>
+            <param name="EndDateNo">傳入日期區間：結束日期</param>
+            <returns>傳回個人月曆資料清單資料表</returns>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.InsertWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.InsertWorkingHoursDetailEntity)">
+            <summary>
+            輸入工時明細
+            </summary>
+            <remarks>
+            <pre><h2>
+            傳入範例
+                POST /api/v1/whs/duty
+                Sample 1
+                {
+                    "RowUnid":"00000CF1-4449-4772-8601-58A478DF110B",
+                    "TypeCode":"C01",
+                    "JobCode":"Bus_1",
+                    "WorkingHours":1,
+                    "Note":"Test_001",
+                    "CreatedBy":"002688"
+                }
+                
+                Sample 2
+                {
+                    "RowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
+                    "TypeCode":"J04",
+                    "JobCode":"J04_99_1_1",
+                    "WorkingHours":2,
+                    "Note":"Test_260169_J04_J04_99_1_1",
+                    "CreatedBy":"260169"
+                }
+                </h2></pre>
+                
+            回傳範例
+               範例1：送出完成
+               {
+                    "message": "送出完成!!"
+                }
+                
+                範例2：不可超出應填時數
+                {
+                    "message": "不可超出應填時數"
+                }
+                
+                範例3：本日已有相同資料
+                {
+                    "message": "本日已有相同資料"
+                }
+            </remarks>
+            <returns>傳回建檔結果</returns>
+            <response code="200">操作完成</response>
+            <response code="401">參數錯誤</response>
+            <response code="501">內部錯誤</response>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.UpdateWorkingHoursDetail(HRIS_WAMS_WebCoreAPI.Models.UpdateWorkingHoursDetailEntity)">
+            <summary>
+            修改填報資料
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                PUT /api/v1/whs/duty
+                Sample 1
+                {
+                    "RowUnid":"00000CF1-4449-4772-8601-58A478DF110B",
+                    "TypeCode":"C01",
+                    "JobCode":"Bus_1",
+                    "WorkingHours":1,
+                    "Note":"Test_001",
+                    "CreatedBy":"002688"
+                }
+                
+                Sample 
+                {
+                    "RowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
+                    "TypeCode":"J04",
+                    "JobCode":"J04_99_1_1",
+                    "WorkingHours":3,
+                    "Note":"Test_260169_J04_J04_99_1_1_3",
+                    "CreatedBy":"Tester"
+                }
+                </h2></pre>
+                
+            回傳範例
+                範例1：更新完成
+                {
+                    "message": "送出完成!!"
+                }
+                
+                範例2：不可超出應填時數
+                {
+                    "message": "不可超出應填時數"
+                }
+            </remarks>
+            <returns></returns>
+            <response code="200">操作完成</response>
+            <response code="401">參數錯誤</response>     
+            <response code="501">內部錯誤</response>     
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetWorkingHoursRowUnidByWorkingDate(System.String,System.DateTime)">
+            <summary>
+            取得RowUnid
+            </summary>
+            <param name="EmpID">員工代碼</param>
+            <param name="WorkingDate">工作日</param>
+            <remarks>
+            傳入EmpID, WorkingDate，查詢並轉換為單日填報RowUnid代碼
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.JobController.GetWorkingDateJobCodebyEmpID(System.String,System.String)">
+            <summary>
+            <returns>傳回取得單日JobCode（樹狀）清單</returns>
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/job/EmpID/855020/WorkingDate/20200405/GetWorkingDateJobCodebyEmpID
+            	[
+            	    {
+            	    "typeCode": "B01",
+            	    "typeName": "專標案(備標)",
+            	    "detailList":
+            	    [
+            	        {
+                		    "jobCode": "B010000001",
+                		    "jobName": "XXXX專標案"
+                		},
+                		{
+                		    "jobCode": "B010000002",
+                		    "jobName": "OOO專標案"
+                		},
+                		{
+                		    "jobCode": "B010000003",
+                		    "jobName": "WWW專標案"
+                		},
+                		{
+                		    "jobCode": "GA090054S",
+                		    "jobName": "國立暨南大學資工系教育行政資訊系統研發中心主機弱掃需求"
+                		},
+                		{
+                		    "jobCode": "GA090055S",
+                		    "jobName": "ibon客製化功能讀卡機(含線材)1"
+                		}	
+                	]
+            	  },
+            	  {
+            	    "typeCode": "B02",
+            	    "typeName": "專標案(建置)",
+            	    "detailList":
+            	    [
+            	        {
+            	            "jobCode": "BA090023H",
+                		    "jobName": "109年度及110年度差勤管理資訊系統委外維護服務案"
+            	        },
+            	        {
+            	            "jobCode": "BA090041H",
+                		    "jobName": "109年度北區交通控制中心電腦硬體子系統維護工作"
+            	        },
+            	        {
+            	            "jobCode": "BA090046H",
+                		    "jobName": "(前瞻基礎建設計畫)基隆市政府虛擬主機整合平台建置案後續擴充"
+            	        }
+                    ]
+            	  },
+            	  {
+            	    "typeCode": "C01",
+            	    "typeName": "CT/ICT",
+            	    "detailList":
+            	    [
+                    ]
+            	  },
+            	  {
+            	    "typeCode": "J04",
+            	    "typeName": "其它",
+            	    "detailList":
+            	    [
+            	        {
+                      	    "jobCode": "J04_99_1_2",
+                      	    "jobName": "行政助理"
+                      	},
+                      	{
+                      	    "jobCode": "J04_99_1_3",
+                      	    "jobName": "內控作業"
+                      	},
+                      	{
+                      	    "jobCode": "J04_99_1_4",
+                      	    "jobName": "個資、資安作業"
+                      	},
+                      	{
+                      	    "jobCode": "J04_99_1_5",
+                      	    "jobName": "其他行政作業"
+                      	},
+                      	{
+                      	    "jobCode": "J04_99_1_6",
+                      	    "jobName": "工會、福委會業務"
+                      	}
+                    ]
+                }
+                ]
+                </h2></pre>
+            </remarks>
+            <param name="EmpID" >員工代號</param>
+            <param name="WorkingDateNo">上班日（格式yyyymmmdd）</param>
+            <returns>傳回單日JobCode樹狀清單</returns>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignBatchController.SignBatchApproval(HRIS_WAMS_WebCoreAPI.Models.BatchSignApprovalEntity)">
+            <summary>
+            主管批次核准
+            </summary>
+            <remarks>
+            <pre><h2>
+            傳入範例   
+                POST /api/v1/whs/signBatch   
+                {   
+                    "signID":"692197",
+                    "isApproval":"1",
+                    "signBatchDetailList":
+                    [
+                        {
+                            "FlowID":"1020200413001997002",
+                            "WorkingHours":40
+                        },
+                        {
+                            "FlowID":"1020200421001997001",
+                            "WorkingHours":40
+                        }
+                    ]
+                }
+            </h2></pre>
+            </remarks>
+            <returns></returns>
+            <response code="200">操作完成</response>
+            <response code="401">參數錯誤</response>     
+            <response code="501">內部錯誤</response>     
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignBatchWeekController.SignBatchApprovalByDateRange(HRIS_WAMS_WebCoreAPI.Models.BatchSignApprovalByDateRangeEntity)">
+            <summary>
+            主管批次核准（單週全部核准）
+            </summary>
+            <remarks>
+            <pre><h2>
+            傳入範例   
+                POST /api/v1/whs/signBatchWeek 
+                {   
+                    "signID":"029935",
+                    "isApproval":"1",
+                    "startDate":"2020-05-03",
+                    "endDate":"2020-05-09",
+                    "waitApproveItemCount":1
+                }
+            </h2></pre>
+            </remarks>
+            <returns></returns>
+            <response code="200">操作完成</response>
+            <response code="401">參數錯誤</response>
+            <response code="501">內部錯誤</response>     
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.GetWaitApprove_WHS(System.String)">
+            <summary>
+            抓取待批表單列表
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/sign/EmpID/002688/GetWaitApprove_WHS
+                {
+                   {"EmpName":"賴x芬",
+                   "FlowID":"1020200413001997001                 ",
+                   "message":"2020/3 W4 工時申報單"
+                   },
+                   {"EmpName":"賴x芬",
+                   "FlowID":"1020200421001997001                 ",
+                   "message":"2020/4 W3 工時申報單"
+                   }
+                }
+            </h2></pre>
+            </remarks>
+            <param name="EmpID" >員工編號</param>
+            <returns>傳回待批表單列表資料</returns>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.SignByFlowID(HRIS_WAMS_WebCoreAPI.Models.SingleSignActionBody)">
+            <summary>
+            主管單筆批核
+            </summary>
+            <remarks>
+            <pre><h2>
+            傳入範例一（核准）
+                POST /api/v1/whs/sign
+                {
+                    "flowID":"1020200413001997001                 ",
+                    "signID":"692197",
+                    "isApproval":"1",
+                    "signLogDetailInfo":
+                    [
+                        {
+                            "rowUnid":"000434DC-222F-42B0-BBD3-C95DD8D40506",
+                            "note":""
+                        },
+                        {
+                            "rowUnid":"0004A24E-8391-48DA-8F20-9488A964335E",
+                            "note":""
+                        },
+                        {
+                            "rowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
+                            "note":""
+                        },
+                        {
+                            "rowUnid":"00077DD0-FA9F-4566-9BA2-7CCBF93DF3FF",
+                            "note":""
+                        }
+                    ]
+                }
+                </h2><h2>
+            傳入範例二（退件）
+                POST /api/v1/whs/sign
+                {
+                    "flowID":"1020200413001997002                 ",
+                    "signID":"692197",
+                    "isApproval":"0",
+                    "signLogDetailInfo":
+                    [
+                        {
+                            "rowUnid":"000783F3-A85B-4704-B937-A69F638C5DD1",
+                            "note":""
+                        },
+                        {
+                            "rowUnid":"000CD695-E48E-4098-AF2C-02F3A68F10FC",
+                            "note":"當日填報有誤請再確認專案工作內容"
+                        },
+                        {
+                            "rowUnid":"000E6A93-C1D6-4A89-AACA-B7D18CD439AE",
+                            "note":""
+                        },
+                        {
+                            "rowUnid":"0010A82C-4CA7-491B-90F9-5D04B45EDDC3",
+                            "note":""
+                        }
+                    ]
+                }
+            </h2></pre>
+            </remarks>
+            <returns></returns>
+            <response code="200">操作完成</response>
+            <response code="401">參數錯誤</response>          
+            <response code="501">內部錯誤</response>          
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.GetWaitApproveDetailByDateRange(System.String,System.String,System.String)">
+            <summary>
+            主管週間工時待批列表
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/sign/EmpID/726124/StartDate/20200413/EndDate/20200419/GetWaitApproveDetail
+                {
+                    "waitApproveStatic":
+                        {
+                            "itemCount":9
+                        },
+                    "waitApproveList":
+                    [
+                        {
+                            "flowID":"1020200413001997001                 ",
+                            "empID":"024457",
+                            "empName":"高國華",
+                            "totalHour":40
+                        },
+                        {
+                            "flowID":"1020200413001997002                 ",
+                            "empID":"138559",
+                            "empName":"陳毓琦       ",
+                            "totalHour":40
+                        },
+                        {
+                            "flowID":"1020200413991997003                 ",
+                            "empID":"557783",
+                            "empName":"吳晉寶       ",
+                            "totalHour":40
+                        },
+                        {
+                            "flowID":"1020200413001868003                 ",
+                            "empID":"694751",
+                            "empName":"蔣孝澈       ",
+                            "totalHour":40
+                        },
+                        {
+                            "flowID":"102020062100199755                 ",
+                            "empID":"256475",
+                            "empName":"梁美珍       ",
+                            "totalHour":40
+                        },
+                        {
+                            "flowID":"102020023304297021                 ",
+                            "empID":"246541",
+                            "empName":"朱心誠       ",
+                            "totalHour":40
+                        },
+                        {
+                            "flowID":"102020040012370121                 ",
+                            "empID":"233465",
+                            "empName":"陳邦本       ",
+                            "totalHour":40
+                        },
+                        {
+                            "flowID":"102020045500199452                 ",
+                            "empID":"245315",
+                            "empName":"陳立文       ",
+                            "totalHour":40
+                        },
+                        {
+                            "flowID":"1020200234001455622                 ",
+                            "empID":"132345",
+                            "empName":"高石頭       ",
+                            "totalHour":40
+                        }
+                    ]
+                }
+                </h2></pre>
+            </remarks>
+            <param name="EmpID" >主管員工代號</param>
+            <param name="StartDateNo">傳入日期區間：起始日期</param>
+            <param name="EndDateNo">傳入日期區間：結束日期</param>
+            <returns>傳回週間待批工時清單</returns>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.GetWaitApproveDayStaticByDateRange(System.String,System.String,System.String)">
+            <summary>
+            批核工時-待批月曆及單日批核總計狀態
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/sign/EmpID/726124/StartDate/20200301/EndDate/20200331/GetWaitApproveDayStatic
+                [
+                {
+                    "flowID": "1020200525002688001                 ",
+                    "isFinish": "0",
+                    "workDate": "2020-05-04",
+                    "waitApproveItemCount": 1
+                },
+                {
+                    "flowID": "1020200525002688001                 ",
+                    "isFinish": "0",
+                    "workDate": "2020-05-06",
+                    "waitApproveItemCount": 1
+                }
+                ]
+                </h2></pre>
+            </remarks>
+            <param name="EmpID" >主管員工代號</param>
+            <param name="StartDateNo">傳入日期區間：起始日期</param>
+            <param name="EndDateNo">傳入日期區間：結束日期</param>
+            <returns>傳回日期區間（通常是單月）內各日的批核總計狀態</returns>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.GetApplicationDetail(System.String)">
+            <summary>
+            主管瀏覽單筆申請待批案件
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                GET /api/v1/whs/sign/FlowID/1020200413001997001/GetApplicationDetail
+                {
+                    "home":
+                    {
+                        "empName":"彭政閔"
+                    },
+                    "workdateList":
+                    [
+                        {
+                            "rowUnid":"00DALSGJ-56D4-4C65-906B-F5F4AA23A4BF",
+                            "workingDate":"2020-04-06",
+                            "workingHourDetailList":
+                            [
+                                {
+                                     "typeCode":"B01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"GA090054S",
+                                     "jobName":"國立暨南大學資工系教育行政資訊系統研發中心主機弱掃需求   ",
+                                     "workingHours":1,
+                                     "note":"TEST1"
+                                },
+                                {
+                                     "typeCode":"B01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"DA090138S",
+                                     "jobName":"彰化銀行升速2路NG-SDH 100M數據專線     ",
+                                     "workingHours":2,
+                                     "note":"TEST2"
+                                }
+                            ]
+                        },
+                        {
+                            "rowUnid":"00DF544D-6D76-4CAA-666B-B0A0B2B3A4BF",
+                            "workingDate":"2020-04-08",
+                            "workingHourDetailList":
+                            [
+                                {
+                                     "typeCode":"S01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"GA0SSSSSS",
+                                     "jobName":"國立SSSSSSS政資訊系統研發中心主機弱掃需求   ",
+                                     "workingHours":1,
+                                     "note":"TESTSSS1"
+                                },
+                                {
+                                     "typeCode":"S02",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"DA0SSS222S",
+                                     "jobName":"SSS22銀行升速2路NG-SDH 100M數據專線     ",
+                                     "workingHours":2,
+                                     "note":"TESTS2"
+                                }
+                            ]
+                        },
+                        {
+                            "rowUnid":"00A05C2D-5DS4-4C65-556B-B54S4S5622BF",
+                            "workingDate":"2020-04-09",
+                            "workingHourDetailList":
+                            [
+                                {
+                                     "typeCode":"S01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"GA0GGG11",
+                                     "jobName":"國立GGGGG政資訊系統研發中心主機弱掃需求   ",
+                                     "workingHours":1,
+                                     "note":"TESTGGGG1"
+                                },
+                                {
+                                     "typeCode":"S02",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"DA0GGG22",
+                                     "jobName":"GGGG22銀行升速2路NG-SDH 100M數據專線     ",
+                                     "workingHours":2,
+                                     "note":"TESTG2"
+                                }
+                            ]
+                        },
+                        {
+                            "rowUnid":"00D5252D-66D4-4ASD-333B-B0A498S5S4BF",
+                            "workingDate":"2020-04-10",
+                            "workingHourDetailList":
+                            [
+                                {
+                                     "typeCode":"S01",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"GA0HHH1",
+                                     "jobName":"國立HHHHHH政資訊系統研發中心主機弱掃需求   ",
+                                     "workingHours":1,
+                                     "note":"TESTHHH1"
+                                },
+                                {
+                                     "typeCode":"S02",
+                                     "typeName":"專標案(建置)",
+                                     "jobCode":"DA0HHHH2",
+                                     "jobName":"HHH22銀行升速2路NG-SDH 100M數據專線     ",
+                                     "workingHours":2,
+                                     "note":"TESTH2"
+                                }
+                            ]
+                        }
+                    ]
+                }
+                </h2></pre>
+            </remarks>
+            <param name="FlowID" >簽核申請案件代碼</param>
+            <returns>傳回待批之申請案件明細內容，包含周間列表資訊</returns>
+            <response code="400">傳入FlowID不正確或查無對應資料</response>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.SignController.UpdatedProcessStatusBySign(HRIS_WAMS_WebCoreAPI.Models.UpdatedProcessStatusBySignEntity)">
+            <summary>
+            主管單筆批核
+            </summary>
+            <remarks>
+            <pre><h2>
+            回傳範例
+                PUT /api/v1/whs/sign
+                Sample 1
+                {
+                    "FlowID":"1020200421001997001",
+                    "SignID":"002688",
+                    "SingRemark":"簽核測試_簽准_test001",
+                    "IsFinish":"1",
+                    "UpdatedBy":"002688",
+                }
+                </h2></pre>
+                
+                IsFinish =1 簽准
+                IsFinish = 3 簽退
+            </remarks>
+            <returns></returns>
+            <response code="200">操作完成</response>        
+            <response code="401">參數錯誤</response>
+            <response code="501">內部錯誤</response>
+        </member>
+        <member name="M:HRIS_WAMS_WebCoreAPI.Models.HrisDbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="optionsBuilder"></param>
+            <remarks>
+            optionsBuilder.UseSqlServer(@"Data Source=T450S\MSSQLSERVER2012;Initial Catalog=HRIS;Persist Security Info=True;Integrated Security=True;");
+            </remarks>
+        </member>
+    </members>
+</doc>
