@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HRIS_WAMS_WebCoreAPI.Models
 {
@@ -135,6 +136,11 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
         [Display(Name = "申請案件狀態")]
         public string IsFinish  { get; set; }
+
+        
+        [Display(Name = "主管簽核備註（退件理由）")]
+        [AllowNull]
+        public string SingRemark { get; set; }
     }
 
 

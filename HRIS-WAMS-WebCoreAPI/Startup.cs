@@ -55,7 +55,7 @@ namespace HRIS_WAMS_WebCoreAPI
 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "v0.32 (05/29)",
+                    Version = "v0.33 (06/01)",
                     Title = "HRIS-WAMS 工時系統 API",
                     Description = "",
                     //TermsOfService = new Uri("https://www.cht.com.tw/terms"),

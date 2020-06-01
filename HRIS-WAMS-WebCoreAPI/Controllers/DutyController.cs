@@ -279,7 +279,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
         /// <summary>
         /// 工時申請單
-        /// 
         /// </summary>
         /// <remarks>
         /// <pre><h2>
@@ -299,23 +298,28 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         [
         ///             {
         ///             "workingDate":"2020-04-06",
-        ///             "isFinish":"未送出"
+        ///             "isFinish":"未送出",
+        ///             "singRemark":""
         ///             },
         ///             {
         ///             "workingdate":"2020-04-07",
-        ///             "isFinish":"未送出"
+        ///             "isFinish":"未送出",
+        ///             "singRemark":""
         ///             },
         ///             {
         ///             "workingdate":"2020-04-08",
-        ///             "isFinish":"已送出"
+        ///             "isFinish":"已送出",
+        ///             "singRemark":""
         ///             },
         ///             {
         ///             "workingdate":"2020-04-09",
-        ///             "isFinish":"未送出"
+        ///             "isFinish":"未送出",
+        ///             "singRemark":""
         ///             },
         ///             {
         ///             "workingdate":"2020-04-10",
-        ///             "isFinish":"未送出"
+        ///             "isFinish":"未送出",
+        ///             "singRemark":""
         ///             }
         ///         ],
         ///         "empLeaveList":
