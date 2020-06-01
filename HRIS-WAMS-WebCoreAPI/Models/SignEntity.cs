@@ -21,7 +21,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public string EmpName { get; set; }
 
 
-        [Required]
+        [Key]
         [Display(Name = "待批表單代碼")]
         public string FlowID { get; set; }
 
@@ -111,6 +111,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 主管週間工時待批列表：明細
     public class WaitApproveDetailEntity
     {
+        [Key]
         [Display(Name = "簽核表單編號")]
         public string FlowID { get; set; }
 

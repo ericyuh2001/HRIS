@@ -33,7 +33,8 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 員工首頁資訊
     public class HomeInfoByEmpEntity
     {
-        [Required]
+        
+        [Key]
         [Display(Name = "員工代號")]
         public string EmpID { get; set; }
 
@@ -67,11 +68,11 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 首頁待填報列表
     public class AlterbyEmpIDEntity
     {
-        [Required]
+
         [Display(Name = "提醒訊息")]
         public string EmpID { get; set; }
 
-        [Required]
+
         [Display(Name = "工作日")]
         public string WorkingDate { get; set; }
 
@@ -113,7 +114,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 員工週間每日狀態顯示
     public class EmpWorkingDateStatusList
     {
-        [Required]
+        [Key]
         [Display(Name = "工作日")]
         [JsonIgnore]
         public DateTime WorkingDate { get; set; }
@@ -140,7 +141,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 員工單日填報統計資訊
     public class EmpWorkdateEntity
     {
-        [Required]
+        [Key]
         [Display(Name = "工時填報資料代碼")]
         public string RowUnid { get; set; }
 
@@ -181,11 +182,9 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 員工單日假單、加班單&判斷員工單日工時
     public class EmpLeavebyWorkDateEntity
     {
-        [Required]
         [Display(Name = "員工代碼")]
         public string EmpID { get; set; }
 
-        [Required]
         [Display(Name = "上班日")]
         [JsonIgnore]
         public DateTime WorkDate { get; set; }
@@ -283,7 +282,7 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         [Display(Name = "員工代號")]
         public string EmpID { get; set; }
 
-        [Key]
+        
         [JsonIgnore]
         [Display(Name = "工作日")]
         public DateTime WorkingDate
@@ -330,15 +329,12 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     // 員工單筆工時明細
     public class WorkingHoursDetailEntity
     {
-        [Key]
         [Display(Name = "工時填報資料代碼")]
         public string RowUnid { get; set; }
 
-        [Key]
         [Display(Name = "工時類別代碼")]
         public string TypeCode { get; set; }
 
-        [Key]
         [Display(Name = "Job代碼")]
         public string JobCode { get; set; }
 

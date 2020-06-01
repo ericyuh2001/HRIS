@@ -535,10 +535,11 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             // ============================================
             var MyHrisDB = new HrisDbContext();
 
+
             // 查詢ProcessStatus ====================================================
             // 申請案件基本資料
             ProcessStatusEntity ProcessStatusInfo = MyHrisDB.TB_ProcessStatusEntitys
-                     .Where(b => b.FlowID == FlowID).FirstOrDefault();
+                     .Where(b => b.FlowID == FlowID && b.IsDeleted == "0").FirstOrDefault();
             if (ProcessStatusInfo == null)
                 return NotFound(retApplicationDetailInfo);
 
@@ -552,21 +553,25 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
             // 查詢ProcessStatusDetail ====================================================
             // 申請案件明細資料
-            List<ProcessStatusDetailEntity> ProcessStatusDetailListInfo = MyHrisDB.TB_ProcessStatusDetailEntitys
+            List<ProcessStatusDetailEntity> ProcessStatusDetailListInfo = 
+                MyHrisDB.TB_ProcessStatusDetailEntitys
                 .Where(p => p.FlowID == FlowID).ToList();
 
-            foreach (string currentRowUnid in ProcessStatusDetailListInfo.Select(p=>p.RowUnid.Trim()))
+            foreach (string currentRowUnid in ProcessStatusDetailListInfo
+                .Select(p => p.RowUnid.Trim()))
             {
                 WorkingHoursEntity WorkingHoursEntityInfo = 
-                    MyHrisDB.TB_WorkingHours.Where(w => w.RowUnid == currentRowUnid)
+                    MyHrisDB.TB_WorkingHours
+                    .Where(w => w.RowUnid == currentRowUnid && w.IsDelete == "0")
                     .FirstOrDefault();
 
                 if (WorkingHoursEntityInfo == null)
                     return NotFound(retApplicationDetailInfo);
 
+
                 List<WorkingHoursDetailWithJobNameEntity> WorkingHoursDetailWithJobNameListInfo =
                     (from currentvwWorkingHoursDetailInfo in MyHrisDB.VW_vwWorkingHoursDetailEntitys
-                     where currentvwWorkingHoursDetailInfo.RowUnid == currentRowUnid
+                     where currentvwWorkingHoursDetailInfo.RowUnid == currentRowUnid 
                      select new WorkingHoursDetailWithJobNameEntity
                      {
                          TypeCode = currentvwWorkingHoursDetailInfo.TypeCode,

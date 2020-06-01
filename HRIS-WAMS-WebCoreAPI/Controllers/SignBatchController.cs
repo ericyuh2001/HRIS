@@ -50,75 +50,64 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         [ProducesResponseType(501)]
         public IActionResult SignBatchApproval([FromBody] BatchSignApprovalEntity BatchSignApprovalInfo)
         {
-            StatusCodeResult scrReturn = null;
-            bool bolInValid = false;
-            string sSQL = @"EXEC [whs].[usp_UpdatedProcessStatusBySignBatch] 
-                            @FlowID = {0}, 
-                            @SignID = {1}, 
-                            @SingRemark = {2}, 
-                            @UpdatedBy = NULL";
-            var MyHrisDB = new HrisDbContext();
-
+            string FlowIDArrayString = string.Empty;
             string SignID = BatchSignApprovalInfo.SignID.Trim();
             string SingRemark = "SP主管批次核准";
             string UpdatedBy = SignID;
             if (SignID.Length != 6)
             {
-                scrReturn = StatusCode(401);
-                bolInValid = true;
+                return StatusCode(401);
             }
-                
+
 
 
             // =====================================================================================
-            if (bolInValid == false
-                && BatchSignApprovalInfo.SignBatchDetailList != null
+            if (BatchSignApprovalInfo.SignBatchDetailList != null
                 && BatchSignApprovalInfo.SignBatchDetailList.Count > 0)
             {
                 foreach (SignBatchDetailEntity SignBatchDetailInfo in BatchSignApprovalInfo.SignBatchDetailList)
                 {
-                    string FlowID = SignBatchDetailInfo.FlowID.Trim();
-                    if (FlowID != string.Empty)
-                    {
-                        string[] param = new[] {
-                            FlowID,
+                    string currentFlowID = SignBatchDetailInfo.FlowID.Trim();
+                    if (FlowIDArrayString == string.Empty)
+                        FlowIDArrayString = currentFlowID;
+                    else
+                        FlowIDArrayString = FlowIDArrayString + "," + currentFlowID;
+
+                }
+            }
+            else
+            {
+                return StatusCode(401);
+            }
+
+
+            // ==================================================================
+            string sSQL = @"EXEC [whs].[usp_UpdatedProcessStatusBySignBatch] 
+                            @FlowID = {0}, 
+                            @SignID = {1}, 
+                            @SingRemark = {2}, 
+                            @UpdatedBy = NULL";
+
+            string[] param = new[] {
+                            FlowIDArrayString,
                             SignID,
                             SingRemark,
                             UpdatedBy
                         };
 
-                        try
-                        {
-                            MyHrisDB.Database.ExecuteSqlRaw(sSQL, param);
-                        }
-                        catch (Exception ex)
-                        {
-                            scrReturn = StatusCode(501);
-                            bolInValid = true;
-                        }
-                    }
-                }
-            }
-            else
+            var MyHrisDB = new HrisDbContext();
+
+
+            try
             {
-                scrReturn = StatusCode(401);
-                bolInValid = true;
+                MyHrisDB.Database.ExecuteSqlRaw(sSQL, param);
             }
-
-
-
-
-
-
-
-            if (bolInValid)
+            catch (Exception ex)
             {
-                return scrReturn;
+                return StatusCode(501);
             }
-            else
-            {
-                return Ok();
-            }
+
+            return Ok();
         }
 
 

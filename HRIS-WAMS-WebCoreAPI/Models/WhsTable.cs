@@ -43,6 +43,10 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         [Display(Name = "是否已填報完成")]
         public string IsFinish { get; set; }
 
+        [DataType("char(1)")]
+        [Display(Name = "是否已刪除")]
+        public string IsDelete { get; set; }
+
     }
 
 
@@ -132,14 +136,13 @@ namespace HRIS_WAMS_WebCoreAPI.Models
     [Table("vwWorkingHoursDetail",Schema ="whs")]
     public class vwWorkingHoursDetailEntity
     {
-        [Key]
+        
         [Display(Name = "工時填報資料代碼")]
         public string RowUnid { get; set; }
 
         [Display(Name = "工時類別代碼")]
         public string TypeCode { get; set; }
 
-        [Key]
         [Display(Name = "Job代碼")]
         public string JobCode { get; set; }
 
