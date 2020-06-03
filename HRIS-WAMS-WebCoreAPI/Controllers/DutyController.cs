@@ -546,18 +546,21 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         [
         ///             {
         ///             "empID":"848259",
-        ///             "workingDate":"2020/04/07",
-        ///             "status:":"未送出"
+        ///             "workingDate":"2020/04/07 工時填報單",
+        ///             "status":"未送出",
+        ///             "linkDate":"2020/04/07"
         ///             },
         ///             {
         ///             "empID":"848259",
-        ///             "workingDate":"2020/04/08",
-        ///             "status:":"未送出"
+        ///             "workingDate":"2020/04/08 工時填報單",
+        ///             "status":"未送出",
+        ///             "linkDate":"2020/04/07"
         ///             },
         ///             {
         ///             "empID":"848259",
-        ///             "workingDate":"2020/04/09",
-        ///             "status:":"未送出"
+        ///             "workingDate":"2020/04/09 工時填報單",
+        ///             "status":"未送出",
+        ///             "linkDate":"2020/04/07"
         ///             }
         ///         ],
         ///         "waitApproveList":
@@ -586,7 +589,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// <returns>傳回員工首頁資訊</returns>
         /// <response code="200">操作完成</response>
         /// <response code="401">參數錯誤</response>
-        /// <response code="501">內部錯誤</response>     
+        /// <response code="501">內部錯誤</response>      
         [HttpGet("EmpID/{EmpID}/GetHomeInfoByEmp")]
         [ProducesResponseType(200)]
         [ProducesResponseType(401)]

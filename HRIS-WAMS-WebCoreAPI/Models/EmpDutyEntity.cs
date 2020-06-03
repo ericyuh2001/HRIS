@@ -80,6 +80,10 @@ namespace HRIS_WAMS_WebCoreAPI.Models
 
         [Display(Name = "狀態訊息")]
         public string status { get; set; }
+
+
+        [Display(Name = "日期連結")]
+        public string LinkDate { get; set; }
     }
     #endregion
 
