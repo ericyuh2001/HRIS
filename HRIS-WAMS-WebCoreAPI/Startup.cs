@@ -39,12 +39,10 @@ namespace HRIS_WAMS_WebCoreAPI
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                               builder =>
                               {
-                                  builder.WithOrigins("http://*.cht.com.tw",
-                                                      "http://*.miraclemobile.com.tw")
-                                    .AllowAnyHeader()
-                                    .AllowAnyOrigin()
-                                    .AllowAnyMethod();
-                                  ;
+                                  //builder.WithOrigins("*")
+                                  builder.AllowAnyHeader();
+                                  builder.AllowAnyOrigin();
+                                  builder.AllowAnyMethod();                                  
                               });
             });
 
@@ -55,7 +53,7 @@ namespace HRIS_WAMS_WebCoreAPI
 
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "v0.36 (06/02)",
+                    Version = "v0.42 (08/12)",
                     Title = "HRIS-WAMS 工時系統 API",
                     Description = "",
                     //TermsOfService = new Uri("https://www.cht.com.tw/terms"),

@@ -20,8 +20,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 主管批次核准（單週全部核准）
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
-        /// 傳入範例   
+        /// 傳入範例  
+        /// 
         ///     POST /api/v1/whs/signBatchWeek 
         ///     {   
         ///         "signID":"029935",
@@ -30,7 +30,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "endDate":"2020-05-09",
         ///         "waitApproveItemCount":1
         ///     }
-        /// </h2></pre>
         /// </remarks>
         /// <returns></returns>
         /// <response code="200">操作完成</response>

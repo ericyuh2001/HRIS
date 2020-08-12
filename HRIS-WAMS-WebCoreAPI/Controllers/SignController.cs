@@ -24,8 +24,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 抓取待批表單列表
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 回傳範例
+        /// 
         ///     GET /api/v1/whs/sign/EmpID/002688/GetWaitApprove_WHS
         ///     {
         ///        {"EmpName":"賴x芬",
@@ -37,7 +37,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///        "message":"2020/4 W3 工時申報單"
         ///        }
         ///     }
-        /// </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >員工編號</param>
         /// <returns>傳回待批表單列表資料</returns>
@@ -88,8 +87,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 主管單筆批核
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 傳入範例一（核准）
+        /// 
         ///     POST /api/v1/whs/sign
         ///     {
         ///         "flowID":"1020200413001997001                 ",
@@ -115,8 +114,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///             }
         ///         ]
         ///     }
-        ///     </h2><h2>
+        ///     
         /// 傳入範例二（退件）
+        /// 
         ///     POST /api/v1/whs/sign
         ///     {
         ///       "flowID": "1020200519002688004",
@@ -145,7 +145,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         }
         ///       ]
         ///     }
-        /// </h2></pre>
         /// </remarks>
         /// <returns></returns>
         /// <response code="200">操作完成</response>
@@ -247,8 +246,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 主管週間工時待批列表
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 回傳範例
+        /// 
         ///     GET /api/v1/whs/sign/EmpID/726124/StartDate/20200413/EndDate/20200419/GetWaitApproveDetail
         ///     {
         ///         "waitApproveStatic":
@@ -313,7 +312,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///             }
         ///         ]
         ///     }
-        ///     </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >主管員工代號</param>
         /// <param name="StartDateNo">傳入日期區間：起始日期</param>
@@ -416,8 +414,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 批核工時-待批月曆及單日批核總計狀態
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 回傳範例
+        /// 
         ///     GET /api/v1/whs/sign/EmpID/726124/StartDate/20200301/EndDate/20200331/GetWaitApproveDayStatic
         ///     [
         ///     {
@@ -433,7 +431,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "waitApproveItemCount": 1
         ///     }
         ///     ]
-        ///     </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >主管員工代號</param>
         /// <param name="StartDateNo">傳入日期區間：起始日期</param>
@@ -521,8 +518,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 主管瀏覽單筆申請待批案件
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 回傳範例
+        /// 
         ///     GET /api/v1/whs/sign/FlowID/1020200413001997001/GetApplicationDetail
         ///     {
         ///         "home":
@@ -625,7 +622,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///             }
         ///         ]
         ///     }
-        ///     </h2></pre>
         /// </remarks>
         /// <param name="FlowID" >簽核申請案件代碼</param>
         /// <returns>傳回待批之申請案件明細內容，包含周間列表資訊</returns>
@@ -720,8 +716,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 主管單筆批核
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 回傳範例
+        /// 
         ///     PUT /api/v1/whs/sign
         ///     Sample 1
         ///     {
@@ -731,7 +727,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "IsFinish":"1",
         ///         "UpdatedBy":"002688",
         ///     }
-        ///     </h2></pre>
         ///     
         ///     IsFinish =1 簽准
         ///     IsFinish = 3 簽退

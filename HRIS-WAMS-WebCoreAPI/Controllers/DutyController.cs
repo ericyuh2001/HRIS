@@ -32,15 +32,15 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 刪除填報資料
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 回傳範例
+        /// 
         ///     DELETE /api/v1/whs/duty
         ///     {
         ///         "RowUnid":"9C821CF6-535F-44D2-96D1-41D61B8BDB1C",
         ///         "TypeCode":"B01",
         ///         "JobCode":"Bus_83"
         ///     }
-        ///     </h2></pre>
+        ///     
         /// </remarks>
         /// <returns></returns>
         /// <response code="200">操作完成</response>        
@@ -281,8 +281,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 工時申請單
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
+        /// 
         /// 回傳範例
+        /// 
         ///     GET /api/v1/whs/duty/EmpID/002688/WorkDate/20200415/GetEmpLeavebyWorkDate
         ///     {
         ///       "workDate": {
@@ -329,10 +330,10 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         }
         ///       ]
         ///     }
-        ///     </h2></pre>
+        ///     
         /// </remarks>
         /// <param name="EmpID" >員工代號</param>
-        /// <param name="WorkDateNo">上班日（格式yyyymmmdd）</param>
+        /// <param name="WorkDateNo">上班日（格式yyyymmdd）</param>
         /// <returns>傳回員工【單日填報統計】、【假單、加班單】、【員工週間申請狀態】、【單日填報工時明細】</returns>
         /// <response code="200">操作完成</response>
         /// <response code="401">參數錯誤</response>
@@ -345,8 +346,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         [ProducesResponseType(501)]
         public async Task<ActionResult<EmpLeaveWithWorkDateDetailEntity>> GetEmpLeaveWorkDates(string EmpID, string WorkDateNo)
         {
-            bool bolInValid = false;            
-            string strRetMsg = string.Empty;
+            bool bolInValid = false;                            // 紀錄程序是否錯誤      
+            string strRetMsg = string.Empty;                    // 紀錄程序錯誤訊息
             ActionResult retStatusCode = null;                  // 回傳StatusCode
 
             DateTime dteWorkdate = default(DateTime);           // 傳入日期參數
@@ -398,8 +399,30 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
                     retStatusCode = NotFound(EmpLeaveWithWorkDateDetailInfo);
                 }
             }
-           
-           
+
+
+
+            // 取得：員工單日假單、加班單&判斷員工單日工時 ======================================
+            // 優先執行：此SP將更新 [WorkingHours].[FilledHours]
+            // 以同步方式呼叫
+            if (!bolInValid)
+            {
+                sSQL = "EXEC [whs].[usp_GetEmpLeavebyWorkDate] {0}, {1}";
+                try
+                {
+                    EmpLeaveWithWorkDateDetailInfo.EmpLeaveList =
+                        MyHrisDB.EmpLeavebyWorkDateEntitys
+                            .FromSqlRaw(sSQL, EmpID, WorkDate)
+                            .ToList();
+                }
+                catch (Exception ex)
+                {
+                    bolInValid = true;
+                    retStatusCode = StatusCode(501, EmpLeaveWithWorkDateDetailInfo);
+                }
+            }
+
+
 
             // 取得：單日填報統計 ===============================================================
             if (!bolInValid)
@@ -407,9 +430,10 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
                 sSQL = "EXEC [whs].[usp_GetWorkingDateAllDetail] {0}";
                 try
                 {
-                    var EmpWorkdateListInfo = await MyHrisDB.EmpWorkdateEntitys
-                        .FromSqlRaw(sSQL, RowUnid)
-                        .ToListAsync();
+                    var EmpWorkdateListInfo = 
+                        await MyHrisDB.EmpWorkdateEntitys
+                            .FromSqlRaw(sSQL, RowUnid)
+                            .ToListAsync();
 
                     if (EmpWorkdateListInfo != null && EmpWorkdateListInfo.Count > 0)
                     {
@@ -426,24 +450,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
 
 
 
-            // 取得：員工單日假單、加班單&判斷員工單日工時 ======================================
-            if (!bolInValid)
-            {
-                sSQL = "EXEC [whs].[usp_GetEmpLeavebyWorkDate] {0}, {1}";
-                try
-                {
-                    EmpLeaveWithWorkDateDetailInfo.EmpLeaveList =
-                        await MyHrisDB.EmpLeavebyWorkDateEntitys
-                        .FromSqlRaw(sSQL, EmpID, WorkDate)
-                        .ToListAsync();
-                }
-                catch (Exception ex)
-                {
-                    bolInValid = true;
-                    retStatusCode = StatusCode(501, EmpLeaveWithWorkDateDetailInfo);
-                }
-            }
-            
+                       
             
 
 
@@ -483,26 +490,20 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
                         await MyHrisDB.WorkingDateAllDetailEntitys
                             .FromSqlRaw(sSQL, RowUnid)
                             .ToListAsync();
+
+                    retStatusCode = Ok(EmpLeaveWithWorkDateDetailInfo);
                 }
                 catch (Exception ex)
                 {
                     bolInValid = true;
                     retStatusCode = StatusCode(501, EmpLeaveWithWorkDateDetailInfo);
-                }
+                }                
             }
-            
-            
+
+
 
             // API 回傳 ==============================================================
-            if (bolInValid)
-            {
-                return retStatusCode;
-            }
-            else
-            {
-                return Ok(EmpLeaveWithWorkDateDetailInfo);
-            }
-            
+            return retStatusCode;
         }
 
 
@@ -528,8 +529,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 抓取員工首頁資訊，包含首頁待填列表
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 回傳範例
+        /// 
         ///     GET /api/v1/whs/duty/EmpID/692197/GetHomeInfoByEmp
         ///     {
         ///         "home":
@@ -582,8 +583,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///             }
         ///         ]
         ///     }
-        ///     </h2></pre>
-        ///     Last modified:  2020/05/06
+        ///     
         /// </remarks>
         /// <param name="EmpID" >員工代號</param>
         /// <returns>傳回員工首頁資訊</returns>
@@ -596,6 +596,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         [ProducesResponseType(501)]
         public async Task<ActionResult<HomeInfoWithAlterByEmpEntity>> GetHomeInfoByEmp(string EmpID)
         {
+            const string ProcedureID = "GetHomeInfoByEmp";
+
             bool bolInValid = false;
             HomeInfoWithAlterByEmpEntity HomeInfoWithAlterByEmpInfo = new HomeInfoWithAlterByEmpEntity();
             ActionResult retResultWithStatus = null;
@@ -620,6 +622,15 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
             {
                 bolInValid = true;
                 retResultWithStatus = StatusCode(501, HomeInfoWithAlterByEmpInfo);
+
+
+                var ael = new ApiExceptionLog
+                {
+                    ProcedureID = ProcedureID,
+                    EmpID = EmpID,
+                    ProcedureStepDescription = "EXEC whs.[usp_GetAlterbyEmpID]"
+                };
+                await ApiExceptionLogHelper.AddLogSync( MyHrisDB, ex, ael);
             }
             
 
@@ -639,6 +650,14 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
                 {
                     bolInValid = true;
                     retResultWithStatus = StatusCode(501, HomeInfoWithAlterByEmpInfo);
+
+                    var ael = new ApiExceptionLog
+                    {
+                        ProcedureID = ProcedureID,
+                        EmpID = EmpID,
+                        ProcedureStepDescription = "[whs].[usp_GetWaitApprove_WHS]"
+                    };
+                    await ApiExceptionLogHelper.AddLogSync( MyHrisDB, ex, ael);
                 }
             }
 
@@ -675,6 +694,14 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
                 {
                     bolInValid = true;
                     retResultWithStatus = StatusCode(501, HomeInfoWithAlterByEmpInfo);
+
+                    var ael = new ApiExceptionLog
+                    {
+                        ProcedureID = ProcedureID,
+                        EmpID = EmpID,
+                        ProcedureStepDescription = "[whs].[usp_GetHomeInfoByEmp]"
+                    };
+                    await ApiExceptionLogHelper.AddLogSync( MyHrisDB, ex, ael);
                 }
             }
 
@@ -702,15 +729,14 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 員工萬年曆狀態列表
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 回傳範例
+        /// 
         ///     GET /api/v1/whs/duty/EmpID/373409/StartDate/20200301/EndDate/20200331/GetWorkingDate
         ///     {
         ///        "empID":"373409",
         ///        "workingDate":"2020-03-01",
         ///        "isFinish":"9"
         ///     }
-        ///     </h2></pre>
         /// </remarks>
         /// <param name="EmpID" >員工代號</param>
         /// <param name="StartDateNo">傳入日期區間：起始日期</param>
@@ -861,8 +887,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 輸入工時明細
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
         /// 傳入範例
+        /// 
         ///     POST /api/v1/whs/duty
         ///     Sample 1
         ///     {
@@ -883,9 +909,10 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "Note":"Test_260169_J04_J04_99_1_1",
         ///         "CreatedBy":"260169"
         ///     }
-        ///     </h2></pre>
+        ///     
         ///     
         /// 回傳範例
+        /// 
         ///    範例1：送出完成
         ///    {
         ///         "message": "送出完成!!"
@@ -900,6 +927,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///     {
         ///         "message": "本日已有相同資料"
         ///     }
+        /// 
         /// </remarks>
         /// <returns>傳回建檔結果</returns>
         /// <response code="200">操作完成</response>
@@ -980,8 +1008,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 修改填報資料
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
+        /// 
         /// 回傳範例
+        /// 
         ///     PUT /api/v1/whs/duty
         ///     Sample 1
         ///     {
@@ -993,7 +1022,7 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "CreatedBy":"002688"
         ///     }
         ///     
-        ///     Sample 
+        ///     Sample 2
         ///     {
         ///         "RowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
         ///         "TypeCode":"J04",
@@ -1002,9 +1031,9 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///         "Note":"Test_260169_J04_J04_99_1_1_3",
         ///         "CreatedBy":"Tester"
         ///     }
-        ///     </h2></pre>
         ///     
         /// 回傳範例
+        /// 
         ///     範例1：更新完成
         ///     {
         ///         "message": "送出完成!!"

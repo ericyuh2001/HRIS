@@ -9,15 +9,15 @@
             刪除填報資料
             </summary>
             <remarks>
-            <pre><h2>
             回傳範例
+            
                 DELETE /api/v1/whs/duty
                 {
                     "RowUnid":"9C821CF6-535F-44D2-96D1-41D61B8BDB1C",
                     "TypeCode":"B01",
                     "JobCode":"Bus_83"
                 }
-                </h2></pre>
+                
             </remarks>
             <returns></returns>
             <response code="200">操作完成</response>        
@@ -29,8 +29,9 @@
             工時申請單
             </summary>
             <remarks>
-            <pre><h2>
+            
             回傳範例
+            
                 GET /api/v1/whs/duty/EmpID/002688/WorkDate/20200415/GetEmpLeavebyWorkDate
                 {
                   "workDate": {
@@ -77,10 +78,10 @@
                     }
                   ]
                 }
-                </h2></pre>
+                
             </remarks>
             <param name="EmpID" >員工代號</param>
-            <param name="WorkDateNo">上班日（格式yyyymmmdd）</param>
+            <param name="WorkDateNo">上班日（格式yyyymmdd）</param>
             <returns>傳回員工【單日填報統計】、【假單、加班單】、【員工週間申請狀態】、【單日填報工時明細】</returns>
             <response code="200">操作完成</response>
             <response code="401">參數錯誤</response>
@@ -92,8 +93,8 @@
             抓取員工首頁資訊，包含首頁待填列表
             </summary>
             <remarks>
-            <pre><h2>
             回傳範例
+            
                 GET /api/v1/whs/duty/EmpID/692197/GetHomeInfoByEmp
                 {
                     "home":
@@ -110,18 +111,21 @@
                     [
                         {
                         "empID":"848259",
-                        "workingDate":"2020/04/07",
-                        "status:":"未送出"
+                        "workingDate":"2020/04/07 工時填報單",
+                        "status":"未送出",
+                        "linkDate":"2020/04/07"
                         },
                         {
                         "empID":"848259",
-                        "workingDate":"2020/04/08",
-                        "status:":"未送出"
+                        "workingDate":"2020/04/08 工時填報單",
+                        "status":"未送出",
+                        "linkDate":"2020/04/07"
                         },
                         {
                         "empID":"848259",
-                        "workingDate":"2020/04/09",
-                        "status:":"未送出"
+                        "workingDate":"2020/04/09 工時填報單",
+                        "status":"未送出",
+                        "linkDate":"2020/04/07"
                         }
                     ],
                     "waitApproveList":
@@ -143,29 +147,27 @@
                         }
                     ]
                 }
-                </h2></pre>
-                Last modified:  2020/05/06
+                
             </remarks>
             <param name="EmpID" >員工代號</param>
             <returns>傳回員工首頁資訊</returns>
             <response code="200">操作完成</response>
             <response code="401">參數錯誤</response>
-            <response code="501">內部錯誤</response>     
+            <response code="501">內部錯誤</response>      
         </member>
         <member name="M:HRIS_WAMS_WebCoreAPI.Controllers.DutyController.GetWorkingDate(System.String,System.String,System.String)">
             <summary>
             員工萬年曆狀態列表
             </summary>
             <remarks>
-            <pre><h2>
             回傳範例
+            
                 GET /api/v1/whs/duty/EmpID/373409/StartDate/20200301/EndDate/20200331/GetWorkingDate
                 {
                    "empID":"373409",
                    "workingDate":"2020-03-01",
                    "isFinish":"9"
                 }
-                </h2></pre>
             </remarks>
             <param name="EmpID" >員工代號</param>
             <param name="StartDateNo">傳入日期區間：起始日期</param>
@@ -180,8 +182,8 @@
             輸入工時明細
             </summary>
             <remarks>
-            <pre><h2>
             傳入範例
+            
                 POST /api/v1/whs/duty
                 Sample 1
                 {
@@ -202,9 +204,10 @@
                     "Note":"Test_260169_J04_J04_99_1_1",
                     "CreatedBy":"260169"
                 }
-                </h2></pre>
+                
                 
             回傳範例
+            
                範例1：送出完成
                {
                     "message": "送出完成!!"
@@ -219,6 +222,7 @@
                 {
                     "message": "本日已有相同資料"
                 }
+            
             </remarks>
             <returns>傳回建檔結果</returns>
             <response code="200">操作完成</response>
@@ -230,8 +234,9 @@
             修改填報資料
             </summary>
             <remarks>
-            <pre><h2>
+            
             回傳範例
+            
                 PUT /api/v1/whs/duty
                 Sample 1
                 {
@@ -243,7 +248,7 @@
                     "CreatedBy":"002688"
                 }
                 
-                Sample 
+                Sample 2
                 {
                     "RowUnid":"0006C7CE-3624-4A52-B803-1E9D5F032A63",
                     "TypeCode":"J04",
@@ -252,9 +257,9 @@
                     "Note":"Test_260169_J04_J04_99_1_1_3",
                     "CreatedBy":"Tester"
                 }
-                </h2></pre>
                 
             回傳範例
+            
                 範例1：更新完成
                 {
                     "message": "送出完成!!"
@@ -382,8 +387,8 @@
             主管批次核准
             </summary>
             <remarks>
-            <pre><h2>
-            傳入範例   
+            傳入範例  
+            
                 POST /api/v1/whs/signBatch   
                 {   
                     "signID":"692197",
@@ -400,7 +405,6 @@
                         }
                     ]
                 }
-            </h2></pre>
             </remarks>
             <returns></returns>
             <response code="200">操作完成</response>
@@ -412,8 +416,8 @@
             主管批次核准（單週全部核准）
             </summary>
             <remarks>
-            <pre><h2>
-            傳入範例   
+            傳入範例  
+            
                 POST /api/v1/whs/signBatchWeek 
                 {   
                     "signID":"029935",
@@ -422,7 +426,6 @@
                     "endDate":"2020-05-09",
                     "waitApproveItemCount":1
                 }
-            </h2></pre>
             </remarks>
             <returns></returns>
             <response code="200">操作完成</response>
@@ -434,8 +437,8 @@
             抓取待批表單列表
             </summary>
             <remarks>
-            <pre><h2>
             回傳範例
+            
                 GET /api/v1/whs/sign/EmpID/002688/GetWaitApprove_WHS
                 {
                    {"EmpName":"賴x芬",
@@ -447,7 +450,6 @@
                    "message":"2020/4 W3 工時申報單"
                    }
                 }
-            </h2></pre>
             </remarks>
             <param name="EmpID" >員工編號</param>
             <returns>傳回待批表單列表資料</returns>
@@ -460,8 +462,8 @@
             主管單筆批核
             </summary>
             <remarks>
-            <pre><h2>
             傳入範例一（核准）
+            
                 POST /api/v1/whs/sign
                 {
                     "flowID":"1020200413001997001                 ",
@@ -487,8 +489,9 @@
                         }
                     ]
                 }
-                </h2><h2>
+                
             傳入範例二（退件）
+            
                 POST /api/v1/whs/sign
                 {
                   "flowID": "1020200519002688004",
@@ -517,7 +520,6 @@
                     }
                   ]
                 }
-            </h2></pre>
             </remarks>
             <returns></returns>
             <response code="200">操作完成</response>
@@ -529,8 +531,8 @@
             主管週間工時待批列表
             </summary>
             <remarks>
-            <pre><h2>
             回傳範例
+            
                 GET /api/v1/whs/sign/EmpID/726124/StartDate/20200413/EndDate/20200419/GetWaitApproveDetail
                 {
                     "waitApproveStatic":
@@ -595,7 +597,6 @@
                         }
                     ]
                 }
-                </h2></pre>
             </remarks>
             <param name="EmpID" >主管員工代號</param>
             <param name="StartDateNo">傳入日期區間：起始日期</param>
@@ -610,8 +611,8 @@
             批核工時-待批月曆及單日批核總計狀態
             </summary>
             <remarks>
-            <pre><h2>
             回傳範例
+            
                 GET /api/v1/whs/sign/EmpID/726124/StartDate/20200301/EndDate/20200331/GetWaitApproveDayStatic
                 [
                 {
@@ -627,7 +628,6 @@
                     "waitApproveItemCount": 1
                 }
                 ]
-                </h2></pre>
             </remarks>
             <param name="EmpID" >主管員工代號</param>
             <param name="StartDateNo">傳入日期區間：起始日期</param>
@@ -642,8 +642,8 @@
             主管瀏覽單筆申請待批案件
             </summary>
             <remarks>
-            <pre><h2>
             回傳範例
+            
                 GET /api/v1/whs/sign/FlowID/1020200413001997001/GetApplicationDetail
                 {
                     "home":
@@ -746,7 +746,6 @@
                         }
                     ]
                 }
-                </h2></pre>
             </remarks>
             <param name="FlowID" >簽核申請案件代碼</param>
             <returns>傳回待批之申請案件明細內容，包含周間列表資訊</returns>
@@ -757,8 +756,8 @@
             主管單筆批核
             </summary>
             <remarks>
-            <pre><h2>
             回傳範例
+            
                 PUT /api/v1/whs/sign
                 Sample 1
                 {
@@ -768,7 +767,6 @@
                     "IsFinish":"1",
                     "UpdatedBy":"002688",
                 }
-                </h2></pre>
                 
                 IsFinish =1 簽准
                 IsFinish = 3 簽退

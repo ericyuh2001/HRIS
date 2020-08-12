@@ -20,8 +20,8 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         /// 主管批次核准
         /// </summary>
         /// <remarks>
-        /// <pre><h2>
-        /// 傳入範例   
+        /// 傳入範例  
+        /// 
         ///     POST /api/v1/whs/signBatch   
         ///     {   
         ///         "signID":"692197",
@@ -38,7 +38,6 @@ namespace HRIS_WAMS_WebCoreAPI.Controllers
         ///             }
         ///         ]
         ///     }
-        /// </h2></pre>
         /// </remarks>
         /// <returns></returns>
         /// <response code="200">操作完成</response>

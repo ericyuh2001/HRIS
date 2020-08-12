@@ -89,6 +89,8 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         public virtual DbSet<ProcessStatusDetailEntity> TB_ProcessStatusDetailEntitys { get; set; }
 
         public virtual DbSet<EmployeeEntity> TB_Employees { get; set; }
+
+        public virtual DbSet<ApiExceptionLog> TB_ApiExceptionLogs { get; set; }
         #endregion
 
 
@@ -118,10 +120,10 @@ namespace HRIS_WAMS_WebCoreAPI.Models
         /// </remarks>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
-            //optionsBuilder.UseSqlServer(@"Data Source=10.16.15.10;Initial Catalog=HRIS;User ID=WAMSU;Password=P@ss1234;");
+
+            optionsBuilder.UseSqlServer(@"Data Source=10.16.15.10;Initial Catalog=HRIS;User ID=WAMSU;Password=P@ss1234;");
             //optionsBuilder.UseSqlServer(@"Data Source=10.160.35.172;Initial Catalog=HRM;User ID=HRIS_WHSU;Password=1qaz@WSX3edc");
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-J342AH8\SQLEXPRESS;Initial Catalog=HRIS;User ID=HRIS_WHSU;Password=1qaz@WSX3edc");
+            //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-J342AH8\SQLEXPRESS;Initial Catalog=HRIS;User ID=HRIS_WHSU;Password=1qaz@WSX3edc");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -142,7 +144,12 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             // 抓取員工單日假單、加班單&判斷員工單日工時
             modelBuilder.Entity<EmpLeavebyWorkDateEntity>(entity =>
             {
-                entity.HasKey(e => new { e.EmpID, e.WorkDate });
+                // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                // Modified:    2020/08/12
+                // Note:        向偉：主Key應是 e.EmpID, e.WorkDate, e.Reason, e.Type
+                // entity.HasKey(e => new { e.EmpID, e.WorkDate });
+                entity.HasKey(e => new { e.EmpID, e.WorkDate, e.Reason, e.type });
+                // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 entity.Ignore(e => e.WorkDateString);
             });
 
@@ -272,6 +279,15 @@ namespace HRIS_WAMS_WebCoreAPI.Models
             // Table based end=================================================================
 
 
+
+
+            // Table based Start =================================================================
+            modelBuilder.Entity<ApiExceptionLog>(entity =>
+            {
+                entity.Property(p => p.CreatedDate).HasDefaultValue(DateTime.Now);                
+            });
+
+            // Table based end=================================================================
 
 
 
